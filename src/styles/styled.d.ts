@@ -7,8 +7,10 @@ declare module 'styled-components' {
       primary: string;
       secondary: string;
       background: string;
+      noColor: string;
       surface: string;
       text: string;
+      textSecondary: string;
       textMuted: string;
       danger: string;
     };
