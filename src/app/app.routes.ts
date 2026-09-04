@@ -20,5 +20,9 @@ export const routes: Routes = [
   {
     path: 'configuration',
     loadComponent: () => import('./screens/configuration/configuration').then(m => m.Configuration),
+  },
+  {
+    path: '**',
+    loadComponent: () => import('./components/shared/not-found/not-found').then(m => m.NotFound),
   }
 ];
