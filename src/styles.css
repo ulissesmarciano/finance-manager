@@ -1,3 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import 'tailwindcss';
+
+@theme {
+  --color-app-bg: oklch(98.4% 0.005 247.9);
+  --color-component-bg: oklch(100% 0 0);
+}
