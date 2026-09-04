@@ -3,6 +3,39 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-app-bg: oklch(98.4% 0.005 247.9);
-  --color-component-bg: oklch(100% 0 0);
+  --radius: 0.75rem;
+
+  --color-background: oklch(98.4% 0.005 247.9);
+  --color-foreground: oklch(20.8% 0.042 265.8);
+
+  --color-card: oklch(100% 0 0);
+  --color-card-foreground: oklch(20.8% 0.042 265.8);
+
+  --color-primary: oklch(68.5% 0.169 237.3);
+  --color-primary-foreground: oklch(100% 0 0);
+  --color-primary-soft: oklch(95.5% 0.031 236);
+
+  --color-secondary: oklch(96.8% 0.007 247.9);
+  --color-secondary-foreground: oklch(20.8% 0.042 265.8);
+
+  --color-muted: oklch(96.8% 0.007 247.9);
+  --color-muted-foreground: oklch(55.4% 0.046 257.4);
+
+  --color-accent: oklch(76.9% 0.161 70.1);
+  --color-accent-foreground: oklch(20.8% 0.042 265.8);
+  --color-accent-soft: oklch(96.4% 0.05 89);
+
+  --color-success: oklch(68% 0.15 158);
+  --color-success-foreground: oklch(100% 0 0);
+  --color-success-soft: oklch(95.5% 0.04 158);
+
+  --color-destructive: oklch(62% 0.21 25.8);
+  --color-destructive-foreground: oklch(100% 0 0);
+  --color-destructive-soft: oklch(95.8% 0.03 22);
+
+  --color-border: oklch(92.9% 0.013 255.5);
+  --color-color-input: oklch(92.9% 0.013 255.5);
+  --color-ring: oklch(68.5% 0.169 237.3);
+
+  --color-sidebar: oklch(100% 0 0);
 }
