@@ -1,10 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap');
+
 @import 'tailwindcss';
 
 @theme {
   --radius: 0.75rem;
 
+  /* Font families */
+  --font-sans: 'Inter', sans-serif;
+  --font-display: 'Plus Jakarta Sans', sans-serif;
+
+  /* Font sizes */
+  --font-size-12: 12px;
+  --font-size-14: 14px;
+  --font-size-16: 16px;
+  --font-size-18: 18px;
+  --font-size-24: 24px;
+  --font-size-36: 36px;
+
+  /* Font weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  /* Colors */
   --color-background: oklch(98.4% 0.005 247.9);
   --color-foreground: oklch(20.8% 0.042 265.8);
 
@@ -34,8 +56,23 @@
   --color-destructive-soft: oklch(95.8% 0.03 22);
 
   --color-border: oklch(92.9% 0.013 255.5);
-  --color-color-input: oklch(92.9% 0.013 255.5);
+  --color-input: oklch(92.9% 0.013 255.5);
   --color-ring: oklch(68.5% 0.169 237.3);
 
   --color-sidebar: oklch(100% 0 0);
+}
+
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
 }
