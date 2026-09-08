@@ -1,1 +1,11 @@
-<p>card-component works!</p>
+<div class="relative flex flex-col items-start p-6 bg-linear-to-br from-background-primary to-background-hard rounded-lg shadow-md">
+    <div class="absolute -right-10 -top-16 size-56 rounded-full bg-primary-foreground/10" ></div>
+    <div class="absolute -bottom-20 right-24 size-44 rounded-full bg-primary-foreground/5"></div>
+    <p class="text-14 text-primary-foreground opacity-80">Patrimônio total</p>
+    <p class="mt-1 text-36 font-bold text-primary-foreground">R$ 10.000,00</p>
+    <div class="flex items-cente gap-6 mt-6">
+        <app-metric label="Saldo investido" value="R$ 15.000,00" />
+        <app-metric label="Saldo líquido" value="R$ 25.000,00" />
+        <app-metric label="Crescimento vs julho" value="+6.4%" />
+    </div>
+</div>
