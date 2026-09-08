@@ -4,6 +4,7 @@
 @import 'material-icons/iconfont/material-icons.css';
 @import 'tailwindcss';
 
+/* css-languageservice-disable-next-line unknownAtRules */
 @theme {
   --radius: 0.75rem;
 
@@ -12,12 +13,12 @@
   --font-display: 'Plus Jakarta Sans', sans-serif;
 
   /* Font sizes */
-  --font-size-12: 12px;
-  --font-size-14: 14px;
-  --font-size-16: 16px;
-  --font-size-18: 18px;
-  --font-size-24: 24px;
-  --font-size-36: 36px;
+  --text-12: 12px;
+  --text-14: 14px;
+  --text-16: 16px;
+  --text-18: 18px;
+  --text-24: 24px;
+  --text-36: 36px;
 
   /* Font weights */
   --font-weight-regular: 400;
@@ -101,6 +102,9 @@
   --shadow-lift: 0 2px 6px rgba(32, 40, 60, 0.06), 0 18px 40px -18px rgba(32, 40, 60, 0.22);
   --shadow-glow: 0 12px 32px -12px rgba(14, 165, 233, 0.55);
 
+  /* Translate */
+  --translate-up-1: -2px;
+  
   /*
   Breakpoints — Tailwind CSS v4
   
@@ -134,7 +138,7 @@
   }
 
   input {
-    font-size: var(--font-size-14);
+    font-size: var(--text-14);
   }
 
   input:focus {
@@ -144,7 +148,7 @@
 
   input::placeholder {
     color: var(--color-muted-foreground);
-    font-size: var(--font-size-14);
+    font-size: var(--text-14);
   }
 
   h1,

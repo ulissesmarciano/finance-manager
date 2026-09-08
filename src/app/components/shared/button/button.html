@@ -1,12 +1,12 @@
 <button
   [class]="
     variant() === 'primary'
-      ? 'bg-button-primary text-primary-foreground py-3-sm font-semibold px-4 leading-none hover:translate-y-[-2px] transform transition-transform duration-300'
+      ? 'bg-button-primary text-primary-foreground py-3-sm font-semibold px-4 leading-none hover:translate-y-up-1 transform transition-transform duration-300'
       : 'bg-button-secondary text-muted-foreground py-3-sm font-semibold px-4 leading-none hover:bg-button-secondary-hover transform transition-transform duration-300'
   "
 >
   @if (icon()) {
-    <mat-icon class="text-[16px]">{{ icon() }}</mat-icon>
+    <mat-icon inline="true">{{ icon() }}</mat-icon>
   }
   {{ variant() }}
 </button>
