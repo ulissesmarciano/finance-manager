@@ -1,0 +1,15 @@
+<div class="flex flex-col gap-1">
+  <label for="select-field" class="block text-12 text-muted-foreground font-semibold">{{
+    label
+  }}</label>
+  <select
+    id="select-field"
+    class="text-14 py-2 px-3 border border-default rounded-lg items-center gap-2 justify-center inline-flex transition-all duration-200 focus:outline-none focus-within:border-blue-500 focus-within:ring-4 focus-within:ring-blue-100 cursor-pointer"
+  >
+    @for (opcao of options; track opcao.value) {
+      <option class="text-14" [value]="opcao.value">
+        {{ opcao.label }}
+      </option>
+    }
+  </select>
+</div>
