@@ -1,0 +1,17 @@
+<div
+  class="py-2 px-3 border border-default rounded-lg items-center gap-2 justify-center inline-flex transition-all duration-200 focus-within:border-blue-500 focus-within:ring-4 focus-within:ring-blue-100"
+>
+  <input
+    class="text-muted-foreground text-14  [&::-webkit-calendar-picker-indicator]:[filter:invert(45%)_sepia(12%)_saturate(1100%)_hue-rotate(175deg)_brightness(90%)_contrast(85%)]"
+    type="date"
+    [value]="startDate"
+    (input)="startDate = $any($event.target).value"
+  />
+  <span class="text-muted-foreground text-14">-</span>
+  <input
+    class="text-muted-foreground text-14  [&::-webkit-calendar-picker-indicator]:[filter:invert(45%)_sepia(12%)_saturate(1100%)_hue-rotate(175deg)_brightness(90%)_contrast(85%)]"
+    type="date"
+    [value]="endDate"
+    (input)="endDate = $any($event.target).value"
+  />
+</div>
