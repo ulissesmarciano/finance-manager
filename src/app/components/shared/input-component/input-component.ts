@@ -1,4 +1,4 @@
-import { Component, Input, input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
   templateUrl: './input-component.html',
 })
 export class InputComponent {
-  @Input() placeholder = 'Buscar transações'; 
-  icon = input<string | null>(null);
+  @Input() placeholder: string | null = null;
+  @Input() icon: string | null = null;
+  @Input() type: 'text' | 'number' = 'text';
 }

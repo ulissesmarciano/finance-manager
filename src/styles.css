@@ -133,6 +133,10 @@
     cursor: pointer;
   }
 
+  input {
+    font-size: var(--font-size-14);
+  }
+
   input:focus {
     outline: none;
     box-shadow: none;
