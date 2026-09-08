@@ -1,11 +1,32 @@
-<div class="relative flex flex-col items-start p-6 bg-linear-to-br from-background-primary to-background-hard rounded-lg shadow-md">
-    <div class="absolute -right-10 -top-16 size-56 rounded-full bg-primary-foreground/10" ></div>
+@if (type === 'summary') {
+  <div
+    class="relative flex flex-col items-start p-6 bg-linear-to-br from-background-primary to-background-hard rounded-lg shadow-md"
+  >
+    <div class="absolute -right-10 -top-16 size-56 rounded-full bg-primary-foreground/10"></div>
     <div class="absolute -bottom-20 right-24 size-44 rounded-full bg-primary-foreground/5"></div>
     <p class="text-14 text-primary-foreground opacity-80">Patrimônio total</p>
     <p class="mt-1 text-36 font-bold text-primary-foreground">R$ 10.000,00</p>
     <div class="flex items-cente gap-6 mt-6">
-        <app-metric label="Saldo investido" value="R$ 15.000,00" />
-        <app-metric label="Saldo líquido" value="R$ 25.000,00" />
-        <app-metric label="Crescimento vs julho" value="+6.4%" />
+      <app-metric label="Saldo investido" value="R$ 15.000,00" />
+      <app-metric label="Saldo líquido" value="R$ 25.000,00" />
+      <app-metric label="Crescimento vs julho" value="+6.4%" />
     </div>
-</div>
+  </div>
+
+} @else if (type === 'period') {
+  <div class="flex flex-col p-6 bg-primary-foreground rounded-lg shadow-md border border-border">
+    <div>
+      <p class="text-foreground font-semibold text-14">Período</p>
+      <p class="text-12 text-muted-foreground">
+        Filtra todas as métricas desta página
+      </p>
+      <div class="flex items-center gap-2 px-0 py-4">
+        <app-button [variant]="selectedPeriod() === '7-days' ? 'primary' : 'third'" size="sm" label="7 dias" (click)="selectPeriod('7-days')"></app-button>
+        <app-button [variant]="selectedPeriod() === '30-days' ? 'primary' : 'third'" size="sm" label="30 dias" (click)="selectPeriod('30-days')"></app-button>
+        <app-button [variant]="selectedPeriod() === 'this-month' ? 'primary' : 'third'" size="sm" label="Este mês" (click)="selectPeriod('this-month')"></app-button>
+        <app-button [variant]="selectedPeriod() === 'this-year' ? 'primary' : 'third'" size="sm" label="Este ano" (click)="selectPeriod('this-year')"></app-button>
+      </div>
+    </div>
+    <app-date-range-picker></app-date-range-picker>
+  </div>
+}
