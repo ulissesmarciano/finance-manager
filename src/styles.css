@@ -17,6 +17,7 @@
   --text-14: 14px;
   --text-16: 16px;
   --text-18: 18px;
+  --text-20: 20px;
   --text-24: 24px;
   --text-36: 36px;
 
@@ -31,7 +32,7 @@
   --color-background: oklch(98.4% 0.005 247.9);
   --color-foreground: oklch(20.8% 0.042 265.8);
   --color-background-primary: oklch(68.5% 0.169 237.3);
-  --color-background-hard: oklch(52% .16 262);
+  --color-background-hard: oklch(52% 0.16 262);
 
   --color-card: oklch(100% 0 0);
   --color-card-foreground: oklch(20.8% 0.042 265.8);
@@ -70,7 +71,7 @@
   --color-button-secondary: oklch(100% 0 0);
   --color-button-secondary-hover: oklch(98.4% 0.005 247.9);
   --color-button-third: oklch(98.4% 0.005 247.9);
-  
+
   /* Spacing */
   --spacing-1: 4px;
   --spacing-2-sm: 6px;
@@ -108,7 +109,7 @@
 
   /* Translate */
   --translate-up-1: -2px;
-  
+
   /*
   Breakpoints — Tailwind CSS v4
   
