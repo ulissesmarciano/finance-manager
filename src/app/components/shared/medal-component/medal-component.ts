@@ -5,12 +5,12 @@ type IconName = 'north_east' | 'south_east';
 
 @Component({
   imports: [MatIcon],
-  selector: 'app-chip-component',
+  selector: 'app-medal-component',
   templateUrl: './medal-component.html',
 })
 export class MedalComponent {
   @Input() name = '';
-  @Input() icon: IconName = 'north_east';
+  @Input() icon: IconName | null = null;
 
   variantClasses(): string {
     const variants: Record<IconName, string> = {
@@ -20,6 +20,6 @@ export class MedalComponent {
         'flex items-center gap-1 py-1 px-2 rounded-lg bg-destructive-soft text-destructive text-12',
     };
 
-    return variants[this.icon];
+    return this.icon ? variants[this.icon] : '';
   }
 }
