@@ -1,9 +1,18 @@
 import { Component } from '@angular/core';
-import { CardComponent } from '../../components/shared/card-component/card-component';
 
 @Component({
-  imports: [CardComponent],
+  imports: [],
   selector: 'app-home',
   templateUrl: './home.html',
 })
-export class Home {}
+export class Home {
+  isModalOpen = false;
+
+  openModal(): void {
+    this.isModalOpen = true;
+  }
+
+  closeModal(): void {
+    this.isModalOpen = false;
+  }
+}
