@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
 type ButtonVariant = 'primary' | 'secondary' | 'third';
@@ -11,6 +11,7 @@ type ButtonSize = 'sm' | 'md' | 'lg';
   templateUrl: './button.html',
 })
 export class Button {
+  clicked = output<void>();
   variant = input<ButtonVariant>('primary');
   icon = input<string | null>(null);
   label = input<Label>(null);
@@ -19,9 +20,9 @@ export class Button {
   variantClasses(): string {
     const variants: Record<ButtonVariant, string> = {
       primary:
-        'bg-button-primary text-primary-foreground py-3-sm font-semibold px-4 leading-none hover:translate-y-up-1 transform transition-transform duration-300',
+        'bg-button-primary text-primary-foreground py-3-sm font-semibold px-4 leading-none hover:translate-y-up-1 duration-300',
       secondary:
-        'bg-button-secondary text-muted-foreground py-3-sm font-semibold px-4 leading-none hover:bg-button-secondary-hover transform transition-transform duration-300',
+        'bg-button-secondary text-muted-foreground py-3-sm font-semibold px-4 leading-none hover:bg-button-secondary-hover duration-300',
       third:
         'bg-button-third text-muted-foreground py-3-sm font-semibold px-4 leading-none hover:text-foreground transform transition-transform duration-300',
     };
