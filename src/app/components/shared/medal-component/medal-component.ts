@@ -5,7 +5,7 @@ type IconName = 'north_east' | 'south_east';
 
 @Component({
   imports: [MatIcon],
-  selector: 'app-chip-component',
+  selector: 'app-medal-component',
   templateUrl: './medal-component.html',
 })
 export class MedalComponent {
