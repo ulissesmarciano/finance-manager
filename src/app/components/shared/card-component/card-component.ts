@@ -3,18 +3,29 @@ import { Metric } from './metric/metric';
 import { DateRangePicker } from '../date-range-picker/date-range-picker';
 import { Button } from '../button/button';
 import { CustomIcon, type IconName } from '../custom-icon/custom-icon';
-import { MedalComponent } from '../medal-component/medal-component';
 import { BarChart } from './bar-chart/bar-chart';
 import { ChartConfiguration, ChartData } from 'chart.js';
 import { DoughnutChart } from './doughnut-chart/doughnut-chart';
 import { MatIcon } from '@angular/material/icon';
+import { ChipComponent } from './chip-component/chip-component';
+import { ProgressBarComponent } from './progress-bar-component/progress-bar-component';
 
-type CardType = 'summary' | 'period' | 'metrics' | 'chart' | 'donut-chart';
+type CardType = 'summary' | 'period' | 'metrics' | 'budget' | 'chart' | 'donut-chart';
 type Period = 'this-month' | '7-days' | '30-days' | 'this-year';
 type BarType = 'single-bar' | 'versus-bar';
 
 @Component({
-  imports: [Metric, DateRangePicker, Button, CustomIcon, BarChart, DoughnutChart, MedalComponent, MatIcon],
+  imports: [
+    Metric,
+    DateRangePicker,
+    Button,
+    CustomIcon,
+    BarChart,
+    DoughnutChart,
+    ChipComponent,
+    MatIcon,
+    ProgressBarComponent
+  ],
   selector: 'app-card-component',
   templateUrl: './card-component.html',
 })
@@ -39,6 +50,8 @@ export class CardComponent {
   @Input() chartOptions: ChartConfiguration<'bar'>['options'] = {};
   @Input() donutChartData: ChartData<'doughnut'> = { labels: [], datasets: [] };
   @Input() donutChartOptions: ChartConfiguration<'doughnut'>['options'] = {};
+  @Input() budgetChipName= '';
+  @Input() chipPercentage: number | null = null;
 
   dataSetLabelIndicator(indicator: string | undefined): string | undefined {
     if (indicator === 'Receitas') {

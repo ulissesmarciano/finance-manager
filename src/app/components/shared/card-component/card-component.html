@@ -63,7 +63,7 @@
           <app-custom-icon [name]="topIcon" />
 
           @if (topIcon !== 'compare_arrows') {
-            <app-medal-component />
+            <app-chip-component />
           } @else {
             <p class="text-12 font-semibold text-muted-foreground">Fixas vs variáveis</p>
           }
@@ -74,26 +74,32 @@
       </div>
       @if (barType === 'versus-bar') {
         <div class="mt-3 flex flex-col gap-2">
-          <div class="flex h-2 overflow-hidden rounded-full bg-secondary">
-            <span class="w-[81%] bg-primary"></span>
-            <span class="w-[19%] bg-accent"></span>
-          </div>
-          <div class="flex justify-between text-12 text-muted-foreground">
-            <p>Fixas R$ 2.938,90</p>
-            <p>Variáveis R$ 704,80</p>
-          </div>
+          <app-progress-bar-component
+            [barType]="barType"
+            [percentage]="90"
+          ></app-progress-bar-component>          
         </div>
       } @else if (barType === 'single-bar') {
         <div class="flex flex-col gap-2">
-          <div class="mt-3 flex h-2 overflow-hidden rounded-full bg-secondary">
-            <span class="w-[81%] bg-primary rounded-sm"></span>
-          </div>
-          <div class="flex justify-between text-12 text-muted-foreground">
-            <p>Fixas R$ 2.938,90</p>
-          </div>
+          <app-progress-bar-component [barType]="barType"></app-progress-bar-component>
+          
         </div>
       }
     </div>
+  </div>
+} @else if (type === 'budget') {
+  <div class="flex flex-col p-6 bg-primary-foreground rounded-lg shadow-md border border-border">
+    <div class="flex justify-between">
+      <p class="text-foreground text-14 font-semibold">Moradia</p>
+      <app-chip-component
+        chipType="percentageChipComponent"
+        [indicator]="chipPercentage"
+      ></app-chip-component>
+    </div>
+    <app-progress-bar-component
+      [barType]="barType"
+      [percentage]="chipPercentage ?? 0"
+    ></app-progress-bar-component>
   </div>
 } @else if (type === 'chart') {
   <div class="flex flex-col p-6 bg-primary-foreground rounded-lg shadow-md border border-border">
