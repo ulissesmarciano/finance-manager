@@ -7,6 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test --watch=false",
+    "test:component": "ng test --watch=false --include",
     "test:changed": "node scripts/check-changed-coverage.mjs",
     "lint": "ng lint"
   },
