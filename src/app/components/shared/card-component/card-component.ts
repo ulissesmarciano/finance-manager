@@ -53,17 +53,6 @@ export class CardComponent {
   @Input() budgetChipName= '';
   @Input() chipPercentage: number | null = null;
 
-  dataSetLabelIndicator(indicator: string | undefined): string | undefined {
-    if (indicator === 'Receitas') {
-      return 'bg-primary rounded-full w-3-sm h-3-sm';
-    }
-    if (indicator === 'Despesas') {
-      return 'bg-accent rounded-full w-3-sm h-3-sm';
-    }
-
-    return undefined;
-  }
-
   getDonutColor(index: number): string | undefined {
     const colors = this.donutChartData.datasets[0]?.backgroundColor;
 
