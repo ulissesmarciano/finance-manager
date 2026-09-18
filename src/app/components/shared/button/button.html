@@ -1,0 +1,16 @@
+<button
+  type="button"
+  (click)="clicked.emit()"
+  [class]="
+    variantClasses() +
+    ' ' +
+    sizeClasses() +
+    ' py-3-sm px-4 leading-none font-semibold transform transition-transform duration-300'
+  "
+>
+  @if (icon()) {
+    <mat-icon inline>{{ icon() }}</mat-icon>
+  }
+
+  {{ label() }}
+</button>

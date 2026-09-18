@@ -5,4 +5,14 @@ import { Component } from '@angular/core';
   selector: 'app-home',
   templateUrl: './home.html',
 })
-export class Home {}
+export class Home {
+  isModalOpen = false;
+
+  openModal(): void {
+    this.isModalOpen = true;
+  }
+
+  closeModal(): void {
+    this.isModalOpen = false;
+  }
+}

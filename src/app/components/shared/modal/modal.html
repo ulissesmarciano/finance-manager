@@ -1,0 +1,26 @@
+@if (isOpen()) {
+  <div
+    class="fixed inset-0 z-50 flex items-center justify-center bg-foreground/40 p-4"
+    role="presentation"
+    (click)="closed.emit()"
+    (keydown)="handleOverlayKeydown($event)"
+  >
+    <section
+      class="w-full max-w-lg rounded-xl bg-card p-6 text-card-foreground shadow-lift"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
+      (click)="$event.stopPropagation()"
+      (keydown)="handleContentKeydown($event)"
+    >
+      <div class="flex items-center justify-between gap-4">
+        <h2 id="modal-title" class="text-20 font-bold">Adicionar transação</h2>
+        <app-button variant="secondary" icon="close" aria-label="Fechar modal" (click)="closed.emit()"> </app-button>
+      </div>
+
+      <p class="mt-4 text-14 text-muted-foreground">
+        Este é o conteúdo do modal. Aqui você poderá adicionar o formulário da transação.
+      </p>
+    </section>
+  </div>
+}
