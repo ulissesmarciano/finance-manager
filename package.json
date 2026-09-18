@@ -6,7 +6,9 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
+    "test": "ng test --watch=false",
+    "test:component": "ng test --watch=false --include",
+    "test:changed": "node scripts/check-changed-coverage.mjs",
     "lint": "ng lint"
   },
   "private": true,
@@ -16,8 +18,12 @@
     "@angular/compiler": "^22.1.0",
     "@angular/core": "^22.1.0",
     "@angular/forms": "^22.1.0",
+    "@angular/material": "^22.1.5",
     "@angular/platform-browser": "^22.1.0",
     "@angular/router": "^22.1.0",
+    "chart.js": "^4.5.1",
+    "material-icons": "^1.13.14",
+    "ng2-charts": "^10.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
   },
@@ -35,6 +41,7 @@
     "tailwindcss": "^4.1.12",
     "typescript": "~6.0.2",
     "typescript-eslint": "8.67.0",
+    "@vitest/coverage-v8": "^4.0.8",
     "vitest": "^4.0.8"
   }
 }
