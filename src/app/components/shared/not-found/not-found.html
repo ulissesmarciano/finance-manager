@@ -1,1 +1,26 @@
-<p>404 - Page Not Found</p>
+<div class="flex h-screen items-center justify-center text-center">
+  <div>
+    <div class="flex items-center justify-center gap-3">
+      <span
+        class="grid size-12 place-items-center rounded-2xl bg-primary text-primary-foreground shadow-[var(--shadow-glow)]"
+        ><span class="font-display text-lg font-bold">F</span></span
+      ><span class="font-display text-lg font-bold tracking-tight">FinFlow</span>
+    </div>
+    <p
+      class="mt-10 font-display text-8xl font-extrabold tracking-tight! bg-linear-to-br from-primary! to-accent! bg-clip-text text-transparent"
+    >
+      404
+    </p>
+    <h1 class="mt-4 font-display text-xl font-bold text-foreground">
+      Essa página não foi encontrada
+    </h1>
+    <p class="mx-auto mt-2 max-w-sm text-sm leading-relaxed text-muted-foreground">
+      O endereço que você tentou abrir não existe ou foi movido. Verifique o link ou volte para o
+      painel.
+    </p>
+    <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+      <app-link route="/" label="Ir para o painel" icon="home"></app-link>
+      <app-link route="/" label="Recarregar" icon="autorenew" linkType="secondary"></app-link>
+    </div>
+  </div>
+</div>
