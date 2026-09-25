@@ -144,6 +144,10 @@
     cursor: pointer;
   }
 
+  a {
+    border: var(--border-width-default) solid var(--border-color-default);
+  }
+
   input {
     font-size: var(--text-14);
   }
