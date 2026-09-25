@@ -1,0 +1,10 @@
+<a
+  [routerLink]="route"
+  [class]="inputClassType()"
+  [type]="linkType"
+>
+@if (icon) {
+  <mat-icon fontSet="material-icons-outlined" class="text-16! size-4!">{{ icon }}</mat-icon>
+}
+  {{ label }}
+</a>
