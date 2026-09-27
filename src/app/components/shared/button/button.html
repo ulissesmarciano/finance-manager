@@ -2,14 +2,22 @@
   type="button"
   (click)="clicked.emit()"
   [class]="
-    variantClasses() +
+    variantClasses(routeActive.isActive ? (activeVariant() ?? variant()) : variant()) +
     ' ' +
     sizeClasses() +
-    ' py-3-sm px-4 leading-none font-semibold transform transition-transform duration-300'
+    ' ' +
+    (contentAlign() === 'start' ? 'justify-start' : 'justify-center') +
+    ' py-3-sm px-4 leading-none font-semibold transform transition duration-300'
   "
+  [routerLink]="route()"
+  routerLinkActive
+  #routeActive="routerLinkActive"
+  [routerLinkActiveOptions]="{ exact: true }"
 >
   @if (icon()) {
-    <mat-icon inline>{{ icon() }}</mat-icon>
+    <mat-icon [class]="'shrink-0 ' + iconSizeClasses()" fontSet="material-symbols-outlined">{{
+      icon()
+    }}</mat-icon>
   }
 
   {{ label() }}
