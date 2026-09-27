@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { Button } from './button';
+import { provideRouter } from '@angular/router';
 
 describe('Button', () => {
   let component: Button;
@@ -8,6 +9,7 @@ describe('Button', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      providers: [provideRouter([])],
       imports: [Button],
     }).compileComponents();
 

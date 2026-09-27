@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 
-type LinkType = 'primary' | 'secondary';
+type LinkType = 'primary' | 'secondary' | 'outlined-secondary';
 
 @Component({
   imports: [MatIcon, RouterLink],
@@ -21,6 +21,10 @@ export class Link {
     }
     if (this.linkType === 'secondary') {
       return 'inline-flex items-center gap-2 rounded-lg bg-background-default px-5 py-2.5 text-sm font-semibold text-foreground transition-opacity hover:opacity-90 hover:bg-button-secondary-hover duration-300';
+    }
+
+    if (this.linkType === 'outlined-secondary') {
+      return 'inline-flex items-center gap-2 rounded-lg bg-background-default px-5 py-2.5 text-sm text-muted-foreground hover:text-foreground duration-300 border-none';
     }
     return;
   }

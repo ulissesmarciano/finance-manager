@@ -1,14 +1,24 @@
 <div class="min-h-screen flex bg-background">
-  <aside class="bg-sidebar hidden lg:flex flex-col py-6 px-4">
-    <app-logo></app-logo>
-    <nav>
+  <aside class="bg-sidebar hidden lg:flex flex-col py-6 px-4 w-64">
+    <app-logo class="mb-8"></app-logo>
+    <nav class="flex-1">
       <app-menu></app-menu>
     </nav>
+    <div>
+      <div class="flex flex-col bg-primary-soft rounded-xl p-4 mb-4">
+        <p class="font-semibold text-foreground text-14">Insights Premium</p>
+        <p class="mt-1 mb-3 text-muted-foreground text-12">
+          Desbloqueie previsões e regras automáticas de categoria.
+        </p>
+        <app-button class="block w-full [&>button]:w-full" label="Fazer upgrade"></app-button>
+      </div>
+      <app-link icon="logout" label="Sair" linkType="outlined-secondary" route="/"></app-link>
+    </div>
   </aside>
-  <main class="flex-1">
-    <router-outlet></router-outlet>
-    <nav class="lg:hidden">
-      <app-menu></app-menu>
+  <main class="min-w-0 flex-1">
+    <nav class="w-full overflow-x-auto lg:hidden">
+      <app-menu class="block w-max"></app-menu>
     </nav>
+    <router-outlet></router-outlet>
   </main>
 </div>

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { MenuItem } from "./menu-item/menu-item";
+import { Button } from '../button/button';
 
 @Component({
-  imports: [MenuItem],
+  imports: [Button],
   selector: 'app-menu',
   templateUrl: './menu.html',
 })
