@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   imports: [],
@@ -6,6 +6,6 @@ import { Component, Input } from '@angular/core';
   templateUrl: './titles-component.html',
 })
 export class TitlesComponent {
-  @Input() title = '';
-  @Input() subTitle = '';
+  title = input.required<string>();
+  subtitle = input('');
 }
