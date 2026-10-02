@@ -1,5 +1,7 @@
 import { Component, input } from '@angular/core';
 
+type TitleSize = 'sm' | 'md' | 'lg';
+
 @Component({
   imports: [],
   selector: 'app-titles-component',
@@ -8,4 +10,5 @@ import { Component, input } from '@angular/core';
 export class TitlesComponent {
   title = input.required<string>();
   subtitle = input('');
+  size = input.required<TitleSize>();
 }
