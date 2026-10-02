@@ -41,7 +41,8 @@ function getChangedProductionFiles() {
         /^src\/app\/.*\.ts$/.test(file) &&
         !file.endsWith('.spec.ts') &&
         file !== 'src/app/app.config.ts',
-    );
+    )
+    .filter((file) => existsSync(resolve(projectRoot, file))); // ignore deleted files
 }
 
 const changedFiles = getChangedProductionFiles();
