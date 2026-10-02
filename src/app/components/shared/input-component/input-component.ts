@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input, Input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
@@ -8,6 +8,6 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class InputComponent {
   @Input() placeholder: string | null = null;
-  @Input() icon: string | null = null;
+  icon = input<string | null>(null);
   @Input() type: 'text' | 'number' = 'text';
 }
