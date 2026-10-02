@@ -1,0 +1,20 @@
+<header class="sticky top-0 z-20 border-b border-border bg-background/80 backdrop-blur-md">
+  <div class="flex items-center gap-4 px-5 py-4 lg:px-8">
+    <app-titles-component
+      class="min-w-0 flex-1"
+      size="lg"
+      [title]="content().title"
+      [subtitle]="content().subtitle"
+    ></app-titles-component>
+    <app-input-component
+      icon="search"
+      placeholder="Buscar transações"
+      class="hidden lg:flex"
+    ></app-input-component>
+    @if (content().actions) {
+      <ng-container *ngComponentOutlet="content().actions ?? null"></ng-container>
+    }
+    <app-button variant="only-icon-secondary" icon="notifications" class="shrink-0"></app-button>
+    <app-avatar class="shrink-0"></app-avatar>
+  </div>
+</header>

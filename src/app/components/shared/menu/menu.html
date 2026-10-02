@@ -1,7 +1,57 @@
-<ul class="flex flex-row lg:flex-col">
-  <app-menu-item label="Painel" route="/"></app-menu-item>
-  <app-menu-item label="Transações" route="/transactions"></app-menu-item>
-  <app-menu-item label="Cartões e Contas" route="/cards-accounts"></app-menu-item>
-  <app-menu-item label="Orçamentos e Metas" route="/targets-quotes"></app-menu-item>
-  <app-menu-item label="Configurações" route="/configuration"></app-menu-item>
+<ul class="flex w-full flex-row flex-nowrap pb-3 px-5 gap-1 lg:flex-col lg:p-0">
+  <li>
+    <app-button
+      class="block w-full [&>button]:w-full"
+      contentAlign="start"
+      label="Painel"
+      icon="dashboard"
+      route="/"
+      variant="outlined-secondary"
+      activeVariant="primary"
+    ></app-button>
+  </li>
+  <li>
+    <app-button
+      class="block w-full [&>button]:w-full"
+      contentAlign="start"
+      label="Transações"
+      icon="swap_horiz"
+      route="/transactions"
+      variant="outlined-secondary"
+      activeVariant="primary"
+    ></app-button>
+  </li>
+  <li>
+    <app-button
+      class="block w-full [&>button]:w-full"
+      contentAlign="start"
+      label="Cartões e Contas"
+      icon="credit_card"
+      route="/cards-accounts"
+      variant="outlined-secondary"
+      activeVariant="primary"
+    ></app-button>
+  </li>
+  <li>
+    <app-button
+      class="block w-full [&>button]:w-full"
+      contentAlign="start"
+      label="Orçamentos e Metas"
+      icon="target"
+      route="/targets-quotes"
+      variant="outlined-secondary"
+      activeVariant="primary"
+    ></app-button>
+  </li>
+  <li>
+    <app-button
+      class="block w-full [&>button]:w-full"
+      contentAlign="start"
+      label="Configurações"
+      icon="settings"
+      route="/configuration"
+      variant="outlined-secondary"
+      activeVariant="primary"
+    ></app-button>
+  </li>
 </ul>

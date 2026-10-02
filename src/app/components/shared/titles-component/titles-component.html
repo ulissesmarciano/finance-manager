@@ -1,4 +1,15 @@
-<div>
-    <h2 class="text-16 font-bold text-foreground">{{title}}</h2>
-    <p class="text-12 text-muted-foreground">{{subTitle}}</p>    
-</div>
+@if (size() === 'md') {
+  <div>
+    <h2 class="text-16 font-bold text-foreground">{{ title() }}</h2>
+    <p class="mt-0.5 truncate text-sm text-12 text-muted-foreground">
+      {{ subtitle() }}
+    </p>
+  </div>
+} @else if (size() === 'lg') {
+  <div class="min-w-0 flex-1">
+    <h1 class="truncate text-20 font-bold text-foreground">{{ title() }}</h1>
+    <p class="mt-0.5 truncate text-sm text-14 text-muted-foreground">
+      {{ subtitle() }}
+    </p>
+  </div>
+}
