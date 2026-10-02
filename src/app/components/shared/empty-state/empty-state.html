@@ -1,6 +1,7 @@
 @if (emptyStateType === 'transaction') {
   <div class="flex flex-col p-6 bg-primary-foreground rounded-lg shadow-md border border-border">
     <app-titles-component
+      size="md"
       [title]="emptyStateTitle"
       [subtitle]="emptyStateSubtitle"
     ></app-titles-component>
@@ -27,6 +28,7 @@
 } @else if (emptyStateType === 'transaction-filter') {
   <div class="flex flex-col p-6 bg-primary-foreground rounded-lg shadow-md border border-border">
     <app-titles-component
+      size="md"
       [title]="emptyStateTitle"
       [subtitle]="emptyStateSubtitle"
     ></app-titles-component>
@@ -53,6 +55,7 @@
 } @else if (emptyStateType === 'goals') {
   <div class="flex flex-col p-6 bg-primary-foreground rounded-lg shadow-md border border-border">
     <app-titles-component
+      size="md"
       [title]="emptyStateTitle"
       [subtitle]="emptyStateSubtitle"
     ></app-titles-component>

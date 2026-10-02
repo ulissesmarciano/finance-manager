@@ -7,7 +7,7 @@
     sizeClasses() +
     ' ' +
     (contentAlign() === 'start' ? 'justify-start' : 'justify-center') +
-    ' py-3-sm px-4 leading-none font-semibold transform transition duration-300'
+    ' leading-none font-semibold transform transition duration-300'
   "
   [routerLink]="route()"
   routerLinkActive
@@ -19,6 +19,7 @@
       icon()
     }}</mat-icon>
   }
-
-  {{ label() }}
+  @if (label()) {
+    {{ label() }}
+  }
 </button>

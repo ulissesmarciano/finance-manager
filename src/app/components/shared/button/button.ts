@@ -2,7 +2,12 @@ import { Component, input, output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
-type ButtonVariant = 'primary' | 'secondary' | 'third' | 'outlined-secondary';
+type ButtonVariant =
+  | 'primary'
+  | 'secondary'
+  | 'third'
+  | 'outlined-secondary'
+  | 'only-icon-secondary';
 type Label = string | null;
 type ButtonSize = 'sm' | 'md' | 'lg';
 
@@ -31,6 +36,8 @@ export class Button {
         'bg-button-third text-muted-foreground py-3-sm font-semibold px-4 hover:text-foreground',
       'outlined-secondary':
         'bg-button-secondary text-muted-foreground py-3-sm font-semibold px-4 hover:bg-primary-soft hover:text-foreground border-none',
+      'only-icon-secondary':
+        'bg-button-secondary text-muted-foreground py-3-sm font-semibold px-3-sm hover:bg-button-secondary-hover',
     };
 
     return variants[variant];
