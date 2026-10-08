@@ -1,10 +1,10 @@
 import { Component, signal } from '@angular/core';
-import { Page } from './components/shared/page/page';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.html',
-  imports: [Page],
+  imports: [RouterOutlet],
 })
 export class App {
   protected readonly title = signal('finance-manager');
