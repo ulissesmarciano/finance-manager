@@ -132,54 +132,79 @@
               Cadastrar
             </button>
           </div>
-          <form class="flex flex-col gap-4 mt-6">
-            @if (selectedAuthMode() === 'login') {
-              <app-input-component
-                [label]="'E-mail'"
-                [placeholder]="'Endereço de e-mail'"
-              ></app-input-component>
-              <app-input-component
-                [label]="'Senha'"
-                [placeholder]="'*Senha'"
-                [type]="'password'"
-              ></app-input-component>
-              <div></div>
-            } @else if (selectedAuthMode() === 'register') {
-              <app-input-component
-                [label]="'Nome'"
-                [placeholder]="'Nome completo'"
-                [type]="'text'"
-              ></app-input-component>
+
+          @if (selectedAuthMode() === 'login') {
+            <form
+              class="flex flex-col gap-4 mt-6"
+              [formGroup]="loginForm"
+              (ngSubmit)="onSubmitLogin()"
+            >
               <app-input-component
                 [label]="'E-mail'"
                 [placeholder]="'Endereço de e-mail'"
                 [type]="'email'"
+                [formControlName]="'email'"
               ></app-input-component>
               <app-input-component
                 [label]="'Senha'"
                 [placeholder]="'*Senha'"
                 [type]="'password'"
+                [formControlName]="'password'"
               ></app-input-component>
-            }
-            @if (selectedAuthMode() === 'login') {
               <div class="flex justify-between items-center">
                 <div class="flex items-center gap-2">
                   <app-input-component
                     class="flex items-center"
                     [type]="'checkbox'"
+                    [formControlName]="'rememberMe'"
                   ></app-input-component>
                   <span class="text-muted-foreground text-12">Lembrar de mim</span>
                 </div>
                 <app-link label="Esqueceu a senha?" linkType="primary-inverted"></app-link>
               </div>
-            }
-            <app-button
-              [label]="selectedAuthMode() === 'login' ? 'Entrar' : 'Criar conta'"
-              [size]="'lg'"
-              [class]="'block w-full [&>button]:w-full'"
-              variant="primary"
-            ></app-button>
-          </form>
+              <app-button
+                [label]="'Entrar'"
+                [size]="'lg'"
+                [class]="'block w-full [&>button]:w-full'"
+                variant="primary"
+                [type]="'submit'"
+                [disabled]="loginForm.invalid"
+              ></app-button>
+            </form>
+          } @else if (selectedAuthMode() === 'register') {
+            <form
+              class="flex flex-col gap-4 mt-6"
+              [formGroup]="registerForm"
+              (ngSubmit)="onSubmitRegister()"
+            >
+              <app-input-component
+                [label]="'Nome'"
+                [placeholder]="'Nome completo'"
+                [type]="'text'"
+                [formControlName]="'name'"
+              ></app-input-component>
+              <app-input-component
+                [label]="'E-mail'"
+                [placeholder]="'Endereço de e-mail'"
+                [type]="'email'"
+                [formControlName]="'email'"
+              ></app-input-component>
+              <app-input-component
+                [label]="'Senha'"
+                [placeholder]="'*Senha'"
+                [type]="'password'"
+                [formControlName]="'password'"
+              ></app-input-component>
+              <app-button
+                [label]="'Criar conta'"
+                [size]="'lg'"
+                [class]="'block w-full [&>button]:w-full'"
+                variant="primary"
+                [type]="'submit'"
+                [disabled]="registerForm.invalid"
+              ></app-button>
+            </form>
+          }
         </div>
         <div class="my-6 flex items-center gap-3 text-12 text-muted-foreground">
           <span class="h-px flex-1 bg-border"></span> ou continue com
