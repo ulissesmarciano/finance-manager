@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Menu } from "../menu/menu";
-import { RouterOutlet } from "@angular/router";
+import { Menu } from '../menu/menu';
+import { RouterOutlet } from '@angular/router';
 import { Logo } from '../logo/logo';
 import { Button } from '../button/button';
 import { Link } from '../link/link';

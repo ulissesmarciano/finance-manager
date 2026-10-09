@@ -1,0 +1,36 @@
+<form class="flex flex-col gap-4 mt-6" [formGroup]="formGroup()" (ngSubmit)="loginSubmitted.emit()">
+  <app-input-component
+    [label]="'E-mail'"
+    [placeholder]="'Endereço de e-mail'"
+    [type]="'email'"
+    [formControlName]="'email'"
+    [errorMessage]="getErrorMessage()(formGroup().controls.email)"
+    [hasError]="formGroup().controls.email.invalid && formGroup().controls.email.touched"
+  ></app-input-component>
+  <app-input-component
+    [label]="'Senha'"
+    [placeholder]="'*Senha'"
+    [type]="'password'"
+    [formControlName]="'password'"
+    [errorMessage]="getErrorMessage()(formGroup().controls.password)"
+    [hasError]="formGroup().controls.password.invalid && formGroup().controls.password.touched"
+  ></app-input-component>
+  <div class="flex justify-between items-center">
+    <div class="flex items-center gap-2">
+      <app-input-component
+        class="flex items-center"
+        [type]="'checkbox'"
+        [formControlName]="'rememberMe'"
+      ></app-input-component>
+      <span class="text-muted-foreground text-12">Lembrar de mim</span>
+    </div>
+    <app-link label="Esqueceu a senha?" linkType="primary-inverted"></app-link>
+  </div>
+  <app-button
+    [label]="'Entrar'"
+    [size]="'lg'"
+    [class]="'block w-full [&>button]:w-full'"
+    variant="primary"
+    [type]="'submit'"
+  ></app-button>
+</form>
