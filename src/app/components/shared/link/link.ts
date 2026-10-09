@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 
-type LinkType = 'primary' | 'secondary' | 'outlined-secondary';
+type LinkType = 'primary' | 'secondary' | 'outlined-secondary' | 'primary-inverted';
 
 @Component({
   imports: [MatIcon, RouterLink],
@@ -25,6 +25,9 @@ export class Link {
 
     if (this.linkType === 'outlined-secondary') {
       return 'inline-flex items-center gap-2 rounded-lg bg-background-default px-5 py-2.5 text-sm text-muted-foreground hover:text-foreground duration-300 border-none';
+    }
+    if (this.linkType === 'primary-inverted') {
+      return 'inline-flex items-center gap-2 rounded-lg bg-background-default text-12 text-primary font-semibold hover:text-foreground duration-300 border-none';
     }
     return;
   }
