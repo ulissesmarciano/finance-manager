@@ -1,6 +1,6 @@
 import { Component, input } from '@angular/core';
 
-type TitleSize = 'sm' | 'md' | 'lg';
+type TitleSize = 'sm' | 'md' | 'lg' | 'xlg';
 
 @Component({
   imports: [],
