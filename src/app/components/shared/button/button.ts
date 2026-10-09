@@ -3,11 +3,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 type ButtonVariant =
-  | 'primary'
-  | 'secondary'
-  | 'third'
-  | 'outlined-secondary'
-  | 'only-icon-secondary';
+  'primary' | 'secondary' | 'third' | 'outlined-secondary' | 'only-icon-secondary';
 type Label = string | null;
 type ButtonSize = 'sm' | 'md' | 'lg';
 

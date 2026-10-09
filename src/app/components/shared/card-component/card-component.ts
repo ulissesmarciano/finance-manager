@@ -24,7 +24,7 @@ type BarType = 'single-bar' | 'versus-bar';
     DoughnutChart,
     ChipComponent,
     MatIcon,
-    ProgressBarComponent
+    ProgressBarComponent,
   ],
   selector: 'app-card-component',
   templateUrl: './card-component.html',
@@ -50,7 +50,7 @@ export class CardComponent {
   @Input() chartOptions: ChartConfiguration<'bar'>['options'] = {};
   @Input() donutChartData: ChartData<'doughnut'> = { labels: [], datasets: [] };
   @Input() donutChartOptions: ChartConfiguration<'doughnut'>['options'] = {};
-  @Input() budgetChipName= '';
+  @Input() budgetChipName = '';
   @Input() chipPercentage: number | null = null;
 
   getDonutColor(index: number): string | undefined {

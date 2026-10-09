@@ -9,7 +9,8 @@
     "test": "ng test --watch=false",
     "test:component": "ng test --watch=false --include",
     "test:changed": "node scripts/check-changed-coverage.mjs",
-    "lint": "ng lint"
+    "lint": "ng lint && prettier --check \"src/**/*.{ts,html,css,scss}\"",
+    "lint:fix": "ng lint --fix && prettier --write \"src/**/*.{ts,html,css,scss}\""
   },
   "private": true,
   "packageManager": "npm@11.17.0",
