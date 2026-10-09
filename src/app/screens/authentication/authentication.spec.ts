@@ -81,6 +81,8 @@ describe('Authentication', () => {
     component.onSubmitLogin();
 
     expect(logSpy).toHaveBeenCalledWith('Login form is invalid');
+    expect(component.loginForm.controls.email.touched).toBe(true);
+    expect(component.loginForm.controls.password.touched).toBe(true);
   });
 
   it('should log registration data when the register form is valid', () => {
@@ -102,5 +104,8 @@ describe('Authentication', () => {
     component.onSubmitRegister();
 
     expect(logSpy).toHaveBeenCalledWith('Register form is invalid');
+    expect(component.registerForm.controls.name.touched).toBe(true);
+    expect(component.registerForm.controls.email.touched).toBe(true);
+    expect(component.registerForm.controls.password.touched).toBe(true);
   });
 });

@@ -4,7 +4,7 @@ import { TitlesComponent } from '../../components/shared/titles-component/titles
 import { Button } from '../../components/shared/button/button';
 import { InputComponent } from '../../components/shared/input-component/input-component';
 import { Link } from '../../components/shared/link/link';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 type Auth = 'login' | 'register';
 
 @Component({
@@ -36,6 +36,7 @@ export class Authentication {
     if (this.loginForm.valid) {
       console.log('Login form submitted:', this.loginForm.value);
     } else {
+      this.loginForm.markAllAsTouched();
       console.log('Login form is invalid');
     }
   }
@@ -44,7 +45,22 @@ export class Authentication {
     if (this.registerForm.valid) {
       console.log('Register form submitted:', this.registerForm.value);
     } else {
+      this.registerForm.markAllAsTouched();
       console.log('Register form is invalid');
     }
+  }
+
+  getErrorMessage(control: AbstractControl): string | null {
+    if (!control.touched) return null;
+
+    if (control.hasError('required')) return 'Este campo é obrigatório.';
+    if (control.hasError('email')) return 'Informe um e-mail válido.';
+
+    if (control.hasError('minlength')) {
+      const minLength = control.getError('minlength').requiredLength;
+      return `Informe pelo menos ${minLength} caracteres.`;
+    }
+
+    return null;
   }
 }
