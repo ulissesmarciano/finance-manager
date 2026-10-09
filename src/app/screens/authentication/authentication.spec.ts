@@ -81,6 +81,8 @@ describe('Authentication', () => {
     component.onSubmitLogin();
 
     expect(logSpy).toHaveBeenCalledWith('Login form is invalid');
+    expect(component.loginForm.controls.email.touched).toBe(true);
+    expect(component.loginForm.controls.password.touched).toBe(true);
   });
 
   it('should log registration data when the register form is valid', () => {
@@ -102,5 +104,48 @@ describe('Authentication', () => {
     component.onSubmitRegister();
 
     expect(logSpy).toHaveBeenCalledWith('Register form is invalid');
+    expect(component.registerForm.controls.name.touched).toBe(true);
+    expect(component.registerForm.controls.email.touched).toBe(true);
+    expect(component.registerForm.controls.password.touched).toBe(true);
+  });
+
+  it('não mostra mensagem para um controle não tocado', () => {
+    const control = component.loginForm.controls.email;
+    control.setValue('');
+
+    expect(control.hasError('required')).toBe(true);
+    expect(component.getErrorMessage(control)).toBeNull();
+  });
+
+  it('mostra a mensagem de campo obrigatório', () => {
+    const control = component.loginForm.controls.email;
+    control.setValue('');
+    control.markAsTouched();
+
+    expect(component.getErrorMessage(control)).toBe('Este campo é obrigatório.');
+  });
+
+  it('mostra a mensagem de e-mail inválido', () => {
+    const control = component.loginForm.controls.email;
+    control.setValue('email-invalido');
+    control.markAsTouched();
+
+    expect(component.getErrorMessage(control)).toBe('Informe um e-mail válido.');
+  });
+
+  it('mostra o tamanho mínimo exigido', () => {
+    const control = component.loginForm.controls.password;
+    control.setValue('abc');
+    control.markAsTouched();
+
+    expect(component.getErrorMessage(control)).toBe('Informe pelo menos 6 caracteres.');
+  });
+
+  it('retorna null quando o controle tocado não tem esses erros', () => {
+    const control = component.loginForm.controls.email;
+    control.setValue('ulisses@example.com');
+    control.markAsTouched();
+
+    expect(component.getErrorMessage(control)).toBeNull();
   });
 });

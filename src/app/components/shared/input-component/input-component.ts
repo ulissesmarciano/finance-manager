@@ -21,6 +21,7 @@ export class InputComponent implements ControlValueAccessor {
   type = input<string | null>('text');
   value = signal<string | boolean>('');
   disabled = signal(false);
+  hasError = input(false);
   errorMessage = input<string | null>(null);
 
   private onChange: (value: string | boolean) => void = () => undefined;
