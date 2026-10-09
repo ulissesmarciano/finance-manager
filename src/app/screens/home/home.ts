@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 
 @Component({
   imports: [],
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.html',
+  selector: 'app-home',
+  templateUrl: './home.html',
 })
-export class Dashboard {
+export class Home {
   isModalOpen = false;
 
   openModal(): void {

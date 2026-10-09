@@ -7,5 +7,5 @@ import { Component, Input } from '@angular/core';
 })
 export class DatePicker {
   @Input() placeholder = 'dd/mm/aaaa';
-  @Input() label = '';
+  @Input() label= '';
 }

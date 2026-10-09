@@ -15,6 +15,6 @@ export class ProgressBarComponent {
     if (this.percentage < 90) {
       return 'bg-primary rounded-sm';
     }
-    return 'bg-accent rounded-sm';
+    return 'bg-accent rounded-sm'
   }
 }

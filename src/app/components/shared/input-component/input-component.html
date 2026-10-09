@@ -1,43 +1,8 @@
-@if (type() === 'email' || type() === 'password' || type() === 'text') {
-  <div class="relative flex flex-col gap-1">
-    @if (label()) {
-      <span class="text-12 text-muted-foreground font-semibold">{{ label() }}</span>
-    }
-    <div
-      [class]="
-        hasError()
-          ? 'py-2 px-3 border border-destructive rounded-lg items-center gap-2 inline-flex transition-all duration-200 focus-within:border-blue-500 focus-within:ring-4 focus-within:ring-blue-100'
-          : 'py-2 px-3 border border-default rounded-lg items-center gap-2 inline-flex transition-all duration-200 focus-within:border-blue-500 focus-within:ring-4 focus-within:ring-blue-100'
-      "
-    >
-      @if (icon()) {
-        <mat-icon class="text-muted-foreground! size-4! text-16!">{{ icon() }}</mat-icon>
-      }
-      <input
-        [class]="'w-full'"
-        [type]="type()"
-        [placeholder]="placeholder()"
-        [value]="value().toString()"
-        [disabled]="disabled()"
-        (input)="onInput($event)"
-        (blur)="markTouched()"
-      />
-    </div>
-    @if (errorMessage()) {
-      <span
-        class="absolute flex items-center gap-1 h-3 -bottom-4 right-0 text-12 text-destructive font-semibold"
-      >
-        <mat-icon class="size-3! text-12!">{{ 'error' }}</mat-icon> {{ errorMessage() }}</span
-      >
-    }
-  </div>
-} @else if (type() === 'checkbox') {
-  <input
-    [type]="type()"
-    [checked]="value() === true"
-    [disabled]="disabled()"
-    class="size-4 rounded border-border accent-[#0EA5E9]"
-    (change)="onInput($event)"
-    (blur)="markTouched()"
-  />
-}
+<div
+  class="py-2 px-3 border border-default rounded-lg items-center gap-2 justify-center inline-flex transition-all duration-200 focus-within:border-blue-500 focus-within:ring-4 focus-within:ring-blue-100"
+>
+  @if (icon()) {
+    <mat-icon class="text-muted-foreground! size-4! text-16!">{{ icon() }}</mat-icon>
+  }
+  <input [type]="type" [placeholder]="placeholder" />
+</div>

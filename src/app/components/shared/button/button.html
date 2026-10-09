@@ -1,5 +1,5 @@
 <button
-  [type]="type()"
+  type="button"
   (click)="clicked.emit()"
   [class]="
     variantClasses(routeActive.isActive ? (activeVariant() ?? variant()) : variant()) +
@@ -13,7 +13,6 @@
   routerLinkActive
   #routeActive="routerLinkActive"
   [routerLinkActiveOptions]="{ exact: true }"
-  [disabled]="disabled()"
 >
   @if (icon()) {
     <mat-icon [class]="'shrink-0 ' + iconSizeClasses()" fontSet="material-symbols-outlined">{{
