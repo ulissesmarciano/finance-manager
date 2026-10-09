@@ -1,14 +1,14 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { Logo } from '../../components/shared/logo/logo';
 import { TitlesComponent } from '../../components/shared/titles-component/titles-component';
 import { Button } from '../../components/shared/button/button';
 import { InputComponent } from '../../components/shared/input-component/input-component';
 import { Link } from '../../components/shared/link/link';
-
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 type Auth = 'login' | 'register';
 
 @Component({
-  imports: [Logo, TitlesComponent, Button, InputComponent, Link],
+  imports: [ReactiveFormsModule, Logo, TitlesComponent, Button, InputComponent, Link],
   selector: 'app-authentication',
   templateUrl: './authentication.html',
 })
@@ -17,5 +17,34 @@ export class Authentication {
 
   selectAuthMode(auth: Auth) {
     this.selectedAuthMode.set(auth);
+  }
+  private fb = inject(FormBuilder);
+
+  loginForm = this.fb.nonNullable.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(6)]],
+    rememberMe: false,
+  });
+
+  registerForm = this.fb.nonNullable.group({
+    name: ['', [Validators.required, Validators.minLength(3)]],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(6)]],
+  });
+
+  onSubmitLogin() {
+    if (this.loginForm.valid) {
+      console.log('Login form submitted:', this.loginForm.value);
+    } else {
+      console.log('Login form is invalid');
+    }
+  }
+
+  onSubmitRegister() {
+    if (this.registerForm.valid) {
+      console.log('Register form submitted:', this.registerForm.value);
+    } else {
+      console.log('Register form is invalid');
+    }
   }
 }

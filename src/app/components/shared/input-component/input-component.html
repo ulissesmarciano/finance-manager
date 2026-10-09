@@ -1,5 +1,5 @@
 @if (type() === 'email' || type() === 'password' || type() === 'text') {
-  <div class="flex flex-col gap-1">
+  <div class="relative flex flex-col gap-1">
     @if (label()) {
       <span class="text-12 text-muted-foreground font-semibold">{{ label() }}</span>
     }
@@ -9,9 +9,25 @@
       @if (icon()) {
         <mat-icon class="text-muted-foreground! size-4! text-16!">{{ icon() }}</mat-icon>
       }
-      <input [type]="type()" [placeholder]="placeholder()" />
+      <input
+        [class]="'w-full'"
+        [type]="type()"
+        [placeholder]="placeholder()"
+        [value]="value().toString()"
+        [disabled]="disabled()"
+        (input)="onInput($event)"
+        (blur)="markTouched()"
+      />
     </div>
+    <span class="text-12 text-destructive">{{ errorMessage() }}</span>
   </div>
 } @else if (type() === 'checkbox') {
-  <input [type]="type()" class="size-4 rounded border-border accent-[#0EA5E9]" />
+  <input
+    [type]="type()"
+    [checked]="value() === true"
+    [disabled]="disabled()"
+    class="size-4 rounded border-border accent-[#0EA5E9]"
+    (change)="onInput($event)"
+    (blur)="markTouched()"
+  />
 }

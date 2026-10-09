@@ -6,6 +6,7 @@ type ButtonVariant =
   'primary' | 'secondary' | 'third' | 'outlined-secondary' | 'only-icon-secondary';
 type Label = string | null;
 type ButtonSize = 'sm' | 'md' | 'lg';
+type ButtonType = 'button' | 'submit' | 'reset';
 
 @Component({
   imports: [MatIconModule, RouterLink, RouterLinkActive],
@@ -19,8 +20,10 @@ export class Button {
   contentAlign = input<'start' | 'center'>('center');
   icon = input<string | null>(null);
   label = input<Label>(null);
-  size = input<'sm' | 'md' | 'lg'>('md');
+  size = input<ButtonSize>('md');
   route = input<string>();
+  type = input<ButtonType>('button');
+  disabled = input<boolean>(false);
 
   variantClasses(variant: ButtonVariant = this.variant()): string {
     const variants: Record<ButtonVariant, string> = {
