@@ -1,1 +1,83 @@
-<p>authentication works!</p>
+<div class="mx-auto py-12 px-6 flex flex-col justify-center h-screen max-w-96">
+  <div class="mb-8">
+
+    <app-logo></app-logo>
+  </div>
+  @if (selectedAuthMode() === 'login') {
+    <app-titles-component
+      title="Bem-vindo(a) de volta"
+      subtitle="Entre para continuar de onde parou."
+      size="lg"
+    ></app-titles-component>
+  } @else if (selectedAuthMode() === 'register') {
+    <app-titles-component
+      title="Crie sua conta"
+      subtitle="Comece a controlar suas finanças em menos de um minuto."
+      size="lg"
+    ></app-titles-component>
+  }
+  <div>
+    <div class="mt-6">
+      <div class="flex items-center gap-1 p-1 bg-button-third rounded-lg">
+        <button
+          (click)="selectAuthMode('login')"
+          [class]="
+            selectedAuthMode() === 'login'
+              ? 'py-2 bg-button-secondary shadow-lg flex-1 rounded-lg border-none font-semibold text-14'
+              : 'py-2 flex-1 font-semibold border-none text-muted-foreground hover:text-foreground text-14'
+          "
+        >
+          Entrar
+        </button>
+        <button
+          (click)="selectAuthMode('register')"
+          [class]="
+            selectedAuthMode() === 'register'
+              ? 'py-2 bg-button-secondary shadow-lg flex-1 rounded-lg border-none font-semibold text-14'
+              : 'py-2 flex-1 font-semibold border-none text-muted-foreground hover:text-foreground text-14'
+          "
+        >
+          Cadastrar
+        </button>
+      </div>
+      <form class="flex flex-col gap-4 mt-6">
+        @if (selectedAuthMode() === 'login') {
+          <app-input-component
+            [label]="'E-mail'"
+            [placeholder]="'Endereço de e-mail'"
+          ></app-input-component>
+          <app-input-component
+            [label]="'Senha'"
+            [placeholder]="'*Senha'"
+            [type]="'password'"
+          ></app-input-component>
+          <div></div>
+        }
+        <div class="flex justify-between items-center">
+          <div class="flex items-center gap-2">
+            <app-input-component
+              class="flex items-center"
+              [type]="'checkbox'"
+            ></app-input-component>
+            <span class="text-muted-foreground text-12">Lembrar de mim</span>
+          </div>
+          <app-link label="Esqueceu a senha?" linkType="primary-inverted"></app-link>
+        </div>
+        <app-button
+          [label]="selectedAuthMode() === 'login' ? 'Entrar' : 'Cadastrar'"
+          [size]="'lg'"
+          [class]="'block w-full [&>button]:w-full'"
+          variant="primary"
+        ></app-button>
+      </form>
+    </div>
+    <div class="my-6 flex items-center gap-3 text-12 text-muted-foreground">
+      <span class="h-px flex-1 bg-border"></span> ou continue com
+      <span class="h-px flex-1 bg-border"></span>
+    </div>
+    <div class="flex gap-3 ">
+      <app-link label="Google" linkType="secondary" [class]="'flex-1 [&>a]:w-full [&>a]:justify-center'"></app-link>
+      <app-link label="Apple" linkType="secondary" [class]="'flex-1 [&>a]:w-full [&>a]:justify-center'"></app-link>
+    </div>
+  </div>
+</div>
