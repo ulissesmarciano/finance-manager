@@ -1,0 +1,37 @@
+<form
+  class="flex flex-col gap-4 mt-6"
+  [formGroup]="formGroup()"
+  (ngSubmit)="registerSubmitted.emit()"
+>
+  <app-input-component
+    [label]="'Nome completo'"
+    [placeholder]="'Seu nome completo'"
+    [type]="'text'"
+    [formControlName]="'name'"
+    [errorMessage]="getErrorMessage()(formGroup().controls.name)"
+    [hasError]="formGroup().controls.name.invalid && formGroup().controls.name.touched"
+  ></app-input-component>
+  <app-input-component
+    [label]="'E-mail'"
+    [placeholder]="'Endereço de e-mail'"
+    [type]="'email'"
+    [formControlName]="'email'"
+    [errorMessage]="getErrorMessage()(formGroup().controls.email)"
+    [hasError]="formGroup().controls.email.invalid && formGroup().controls.email.touched"
+  ></app-input-component>
+  <app-input-component
+    [label]="'Senha'"
+    [placeholder]="'*Senha'"
+    [type]="'password'"
+    [formControlName]="'password'"
+    [errorMessage]="getErrorMessage()(formGroup().controls.password)"
+    [hasError]="formGroup().controls.password.invalid && formGroup().controls.password.touched"
+  ></app-input-component>
+  <app-button
+    [label]="'Criar conta'"
+    [size]="'lg'"
+    [class]="'block mt-4 w-full [&>button]:w-full'"
+    variant="primary"
+    [type]="'submit'"
+  ></app-button>
+</form>

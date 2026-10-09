@@ -134,92 +134,17 @@
           </div>
 
           @if (selectedAuthMode() === 'login') {
-            <form
-              class="flex flex-col gap-4 mt-6"
+            <app-login-form
               [formGroup]="loginForm"
-              (ngSubmit)="onSubmitLogin()"
-            >
-              <app-input-component
-                [label]="'E-mail'"
-                [placeholder]="'Endereço de e-mail'"
-                [type]="'email'"
-                [formControlName]="'email'"
-                [errorMessage]="getErrorMessage(loginForm.controls.email)"
-                [hasError]="loginForm.controls.email.invalid && loginForm.controls.email.touched"
-              ></app-input-component>
-              <app-input-component
-                [label]="'Senha'"
-                [placeholder]="'*Senha'"
-                [type]="'password'"
-                [formControlName]="'password'"
-                [errorMessage]="getErrorMessage(loginForm.controls.password)"
-                [hasError]="
-                  loginForm.controls.password.invalid && loginForm.controls.password.touched
-                "
-              ></app-input-component>
-              <div class="flex justify-between items-center">
-                <div class="flex items-center gap-2">
-                  <app-input-component
-                    class="flex items-center"
-                    [type]="'checkbox'"
-                    [formControlName]="'rememberMe'"
-                  ></app-input-component>
-                  <span class="text-muted-foreground text-12">Lembrar de mim</span>
-                </div>
-                <app-link label="Esqueceu a senha?" linkType="primary-inverted"></app-link>
-              </div>
-              <app-button
-                [label]="'Entrar'"
-                [size]="'lg'"
-                [class]="'block w-full [&>button]:w-full'"
-                variant="primary"
-                [type]="'submit'"
-              ></app-button>
-            </form>
+              [getErrorMessage]="getErrorMessage"
+              (loginSubmitted)="onSubmitLogin()"
+            ></app-login-form>
           } @else if (selectedAuthMode() === 'register') {
-            <form
-              class="flex flex-col gap-4 mt-6"
+            <app-register-form
               [formGroup]="registerForm"
-              (ngSubmit)="onSubmitRegister()"
-            >
-              <app-input-component
-                [label]="'Nome completo'"
-                [placeholder]="'Seu nome completo'"
-                [type]="'text'"
-                [formControlName]="'name'"
-                [errorMessage]="getErrorMessage(registerForm.controls.name)"
-                [hasError]="
-                  registerForm.controls.name.invalid && registerForm.controls.name.touched
-                "
-              ></app-input-component>
-              <app-input-component
-                [label]="'E-mail'"
-                [placeholder]="'Endereço de e-mail'"
-                [type]="'email'"
-                [formControlName]="'email'"
-                [errorMessage]="getErrorMessage(registerForm.controls.email)"
-                [hasError]="
-                  registerForm.controls.email.invalid && registerForm.controls.email.touched
-                "
-              ></app-input-component>
-              <app-input-component
-                [label]="'Senha'"
-                [placeholder]="'*Senha'"
-                [type]="'password'"
-                [formControlName]="'password'"
-                [errorMessage]="getErrorMessage(registerForm.controls.password)"
-                [hasError]="
-                  registerForm.controls.password.invalid && registerForm.controls.password.touched
-                "
-              ></app-input-component>
-              <app-button
-                [label]="'Criar conta'"
-                [size]="'lg'"
-                [class]="'block mt-4 w-full [&>button]:w-full'"
-                variant="primary"
-                [type]="'submit'"
-              ></app-button>
-            </form>
+              [getErrorMessage]="getErrorMessage"
+              (registerSubmitted)="onSubmitRegister()"
+            ></app-register-form>
           }
         </div>
         <div class="my-6 flex items-center gap-3 text-12 text-muted-foreground">

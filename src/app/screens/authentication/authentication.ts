@@ -1,14 +1,15 @@
 import { Component, inject, signal } from '@angular/core';
 import { Logo } from '../../components/shared/logo/logo';
 import { TitlesComponent } from '../../components/shared/titles-component/titles-component';
-import { Button } from '../../components/shared/button/button';
-import { InputComponent } from '../../components/shared/input-component/input-component';
 import { Link } from '../../components/shared/link/link';
 import { AbstractControl, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { LoginForm } from './login-form/login-form';
+import { RegisterForm } from './register-form/register-form';
+
 type Auth = 'login' | 'register';
 
 @Component({
-  imports: [ReactiveFormsModule, Logo, TitlesComponent, Button, InputComponent, Link],
+  imports: [ReactiveFormsModule, Logo, TitlesComponent, Link, LoginForm, RegisterForm],
   selector: 'app-authentication',
   templateUrl: './authentication.html',
 })
