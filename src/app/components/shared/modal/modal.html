@@ -15,7 +15,13 @@
     >
       <div class="flex items-center justify-between gap-4">
         <h2 id="modal-title" class="text-20 font-bold">Adicionar transação</h2>
-        <app-button variant="secondary" icon="close" aria-label="Fechar modal" (click)="closed.emit()"> </app-button>
+        <app-button
+          variant="secondary"
+          icon="close"
+          aria-label="Fechar modal"
+          (click)="closed.emit()"
+        >
+        </app-button>
       </div>
 
       <p class="mt-4 text-14 text-muted-foreground">
