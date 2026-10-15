@@ -172,3 +172,7 @@
     letter-spacing: -0.02em;
   }
 }
+
+.mat-datepicker-content:has(.date-range-picker-panel) {
+  background-color: var(--color-primary-foreground, #fff);
+}
