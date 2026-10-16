@@ -1,6 +1,6 @@
 @if (type === 'summary') {
   <div
-    class="relative flex flex-col items-start overflow-hidden p-6 bg-linear-to-br from-background-primary to-background-hard rounded-lg shadow-md"
+    class="relative flex flex-col items-start overflow-hidden p-6 bg-linear-to-br from-background-primary to-background-hard rounded-lg shadow-md h-full"
   >
     <div class="absolute -right-10 -top-16 size-56 rounded-full bg-primary-foreground/10"></div>
     <div class="absolute -bottom-20 right-24 size-44 rounded-full bg-primary-foreground/5"></div>
@@ -8,7 +8,7 @@
     <p class="mt-1 text-36 font-bold text-primary-foreground tracking-tight leading-none">
       R$ 47.091,47
     </p>
-    <div class="flex flex-col items-center gap-6 mt-6">
+    <div class="flex flex-wrap items-center gap-6 mt-6">
       <app-metric label="Saldo investido" value="R$ 15.000,00" />
       <app-metric label="Saldo líquido" value="R$ 25.000,00" />
       <app-metric label="Crescimento vs julho" value="+6.4%" />
@@ -50,7 +50,7 @@
   </div>
 } @else if (type === 'metrics') {
   <div
-    class="flex flex-1 items-center p-6 gap-4 bg-primary-foreground rounded-lg shadow-md border border-border hover:shadow-lg hover:translate-y-up-1 transition-transform duration-200"
+    class="flex h-full items-center p-6 gap-4 bg-primary-foreground rounded-lg shadow-md border border-border hover:shadow-lg hover:translate-y-up-1 transition-transform duration-200"
   >
     @if (leftIcon) {
       <div class="flex justify-center items-center size-11 rounded-lg text-accent bg-accent-soft">
