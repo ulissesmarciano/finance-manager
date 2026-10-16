@@ -10,7 +10,6 @@ type BarType = 'single-bar' | 'versus-bar';
 export class ProgressBarComponent {
   @Input() barType: BarType | null = null;
   @Input() percentage = 0;
-
   variantSingleBarClasses(): string {
     if (this.percentage < 90) {
       return 'bg-primary rounded-sm';
