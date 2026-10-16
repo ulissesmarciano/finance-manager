@@ -13,6 +13,7 @@ import { ProgressBarComponent } from './progress-bar-component/progress-bar-comp
 type CardType = 'summary' | 'period' | 'metrics' | 'budget' | 'chart' | 'donut-chart';
 type Period = 'this-month' | '7-days' | '30-days' | 'this-year';
 type BarType = 'single-bar' | 'versus-bar';
+type MetricChipType = 'metricChipComponent' | 'infoChipComponent' | 'percentageChipComponent';
 
 @Component({
   imports: [
@@ -34,7 +35,7 @@ export class CardComponent {
   @Input() topIcon: IconName | null = null;
   @Input() barType: BarType | null = null;
   @Input() leftIcon: IconName | null = null;
-  metricChipType = input<'metricChipComponent' | 'infoChipComponent' | 'percentageChipComponent'>('metricChipComponent');
+  metricChipType = input<MetricChipType>('metricChipComponent');
   metricChipIcon = input<'north_east' | 'south_east' | null>(null);
   versusPercentage = input<number>(0);
   metricChipValue = input<string>('');
