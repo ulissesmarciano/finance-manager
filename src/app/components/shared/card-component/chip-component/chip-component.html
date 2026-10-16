@@ -1,18 +1,18 @@
-@if (chipType === 'metricChipComponent') {
-  <span [class]="variantMetricClasses()">
-    @if (icon) {
-      <mat-icon inline>{{ icon }}</mat-icon>
+@if (chipType() === 'metricChipComponent') {
+  <span [class]="'font-semibold ' + variantMetricClasses()">
+    @if (chipIcon()) {
+      <mat-icon inline>{{ chipIcon() }}</mat-icon>
     }
-    <p>{{ name }}</p>
+    <p>{{ chipValue() }}</p>
   </span>
-} @else if (chipType === 'infoChipComponent') {
+} @else if (chipType() === 'infoChipComponent') {
   <span>
-    <p>{{ name }}</p>
+    <p>{{ chipValue() }}</p>
   </span>
-} @else if (chipType === 'percentageChipComponent') {
-  <span [class]="variantPercentageClasses(indicator)">
-    @if (indicator !== null) {
-      <p>{{ indicator }}% usado</p>
+} @else if (chipType() === 'percentageChipComponent') {
+  <span [class]="variantPercentageClasses(chipIndicator())">
+    @if (chipIndicator() !== null) {
+      <p>{{ chipIndicator() }}% usado</p>
     } @else {
       <p>- % usado</p>
     }
