@@ -1,1 +1,93 @@
-<p>Dashboard works!</p>
+<div class="grid py-5 px-6 gap-5">
+  <section class="grid grid-cols-1 gap-5">
+    <app-card-component class="min-w-0" [type]="'summary'"></app-card-component>
+    <app-card-component class="min-w-0" [type]="'period'"></app-card-component>
+  </section>
+  <section class="grid grid-cols-1 gap-5">
+    <app-card-component
+      type="metrics"
+      topIcon="north_east"
+      metricLabel="Receitas totais"
+      value="R$ 10.670,00"
+      foot="6 entradas de receita neste mês"
+      metricChipIcon="north_east"
+      metricChipType="metricChipComponent"
+      metricChipValue="7,8%"
+    ></app-card-component>
+    <app-card-component
+      type="metrics"
+      topIcon="south_east"
+      metricLabel="Despesas totais"
+      value="R$ 6.870,00"
+      foot="18 lançamentos de despesa neste mês"
+      metricChipIcon="south_east"
+      metricChipType="metricChipComponent"
+      metricChipValue="5,2%"
+    ></app-card-component>
+    <app-card-component
+      type="metrics"
+      topIcon="compare_arrows"
+      metricLabel="Divisão por natureza da despesa"
+      value="81% / 19%"
+      [versusPercentage]="81"
+      barType="versus-bar"
+      metricChipIcon="south_east"
+      metricChipType="metricChipComponent"
+    ></app-card-component>
+    <app-card-component
+      type="metrics"
+      topIcon="savings"
+      metricLabel="Taxa de economia mensal"
+      value="35.6%"
+      foot="R$ 3.800,00 economizados em agosto"
+      metricChipIcon="north_east"
+      metricChipType="metricChipComponent"
+      metricChipValue="2,1 pts"
+    ></app-card-component>
+  </section>
+  <section class="grid grid-cols-1 gap-5">
+    <app-card-component
+      type="chart"
+      barType="single-bar"
+      chartTitle="Receitas x despesas"
+      chartSubtitle="Últimos 6 meses"
+      [chartOptions]="monthlyChartOptions"
+      [chartData]="{
+        labels: monthlyLabels,
+        datasets: [
+          {
+            label: 'Receitas',
+            data: [9200, 8800, 9700, 10200, 9900, 10600],
+            backgroundColor: '#03A9F4',
+          },
+          {
+            label: 'Despesas',
+            data: [6100, 6500, 5900, 7100, 6400, 6800],
+            backgroundColor: '#F59E0B',
+          },
+        ],
+      }"
+    ></app-card-component>
+    <app-card-component
+      type="donut-chart"
+      chartTitle="Despesas por categoria"
+      chartSubtitle="Agosto de 2026"
+      [donutChartOptions]="categoryChartOptions"
+      [donutChartData]="{
+        labels: ['Moradia', 'Alimentação', 'Transporte', 'Lazer'],
+        datasets: [
+          {
+            data: [42, 30, 18, 10],
+            backgroundColor: ['#03A9F4', '#F59E0B', '#24B47E', '#9B5DE5'],
+            borderColor: '#FFFFFF',
+            borderWidth: 1,
+            spacing: 4,
+          },
+        ],
+      }"
+    ></app-card-component>
+  </section>
+  <section>
+    <app-recent-transactions></app-recent-transactions>
+  </section>
+</div>
