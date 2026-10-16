@@ -176,3 +176,15 @@
 .mat-datepicker-content:has(.date-range-picker-panel) {
   background-color: var(--color-primary-foreground, #fff);
 }
+
+.date-range-field {
+  --mat-form-field-container-height: 44px;
+  --mat-form-field-container-vertical-padding: 10px;
+  --mat-form-field-outlined-outline-color: transparent;
+  --mat-form-field-outlined-hover-outline-color: transparent;
+  --mat-form-field-outlined-focus-outline-color: transparent;
+}
+
+.date-range-field .mat-mdc-form-field-infix {
+  padding-inline: 12px;
+}

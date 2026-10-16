@@ -1,4 +1,4 @@
-import { Component, Input, signal } from '@angular/core';
+import { Component, input, Input, signal } from '@angular/core';
 import { Metric } from './metric/metric';
 import { DateRangePicker } from '../date-range-picker/date-range-picker';
 import { Button } from '../button/button';
@@ -34,6 +34,10 @@ export class CardComponent {
   @Input() topIcon: IconName | null = null;
   @Input() barType: BarType | null = null;
   @Input() leftIcon: IconName | null = null;
+  metricChipType = input<'metricChipComponent' | 'infoChipComponent' | 'percentageChipComponent'>('metricChipComponent');
+  metricChipIcon = input<'north_east' | 'south_east' | null>(null);
+  versusPercentage = input<number>(0);
+  metricChipValue = input<string>('');
 
   selectedPeriod = signal<Period>('this-month');
 
