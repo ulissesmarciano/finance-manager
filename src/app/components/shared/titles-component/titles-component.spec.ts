@@ -21,4 +21,11 @@ describe('TitlesComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should render the title when size is small', () => {
+    fixture.componentRef.setInput('size', 'sm');
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.textContent).toContain('Resumo');
+  });
 });

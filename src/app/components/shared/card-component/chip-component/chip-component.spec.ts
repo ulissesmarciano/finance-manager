@@ -22,7 +22,7 @@ describe('ChipComponent', () => {
 
   it('should apply the selected variant', () => {
     fixture.componentRef.setInput('chipType', 'percentageChipComponent');
-    fixture.componentRef.setInput('indicator', 90);
+    fixture.componentRef.setInput('chipIndicator', 90);
     fixture.detectChanges();
 
     const chipComponent = fixture.nativeElement.querySelector('span') as HTMLSpanElement;
@@ -32,7 +32,7 @@ describe('ChipComponent', () => {
 
   it('should apply the success variant when the indicator is below 90', () => {
     fixture.componentRef.setInput('chipType', 'percentageChipComponent');
-    fixture.componentRef.setInput('indicator', 89);
+    fixture.componentRef.setInput('chipIndicator', 89);
     fixture.detectChanges();
 
     const chipComponent = fixture.nativeElement.querySelector('span') as HTMLSpanElement;
@@ -42,6 +42,7 @@ describe('ChipComponent', () => {
 
   it('should apply the default variant when the indicator is null', () => {
     fixture.componentRef.setInput('chipType', 'percentageChipComponent');
+    fixture.componentRef.setInput('chipIndicator', null);
     fixture.detectChanges();
 
     const chipComponent = fixture.nativeElement.querySelector('span') as HTMLSpanElement;
@@ -50,14 +51,14 @@ describe('ChipComponent', () => {
   });
 
   it('should apply the metric variant for the north-east icon', () => {
-    fixture.componentRef.setInput('icon', 'north_east');
+    fixture.componentRef.setInput('chipIcon', 'north_east');
     fixture.detectChanges();
 
     expect(component.variantMetricClasses()).toContain('bg-success-soft');
   });
 
   it('should apply the metric variant for the south-east icon', () => {
-    fixture.componentRef.setInput('icon', 'south_east');
+    fixture.componentRef.setInput('chipIcon', 'south_east');
     fixture.detectChanges();
 
     expect(component.variantMetricClasses()).toContain('bg-destructive-soft');

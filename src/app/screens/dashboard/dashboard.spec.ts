@@ -1,6 +1,12 @@
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, beforeEach, it, expect } from 'vitest';
 import { Dashboard } from './dashboard';
+import { provideRouter } from '@angular/router';
+import { provideNativeDateAdapter } from '@angular/material/core';
+
+registerLocaleData(localePt, 'pt-BR');
 
 describe('Dashboard', () => {
   let component: Dashboard;
@@ -9,6 +15,7 @@ describe('Dashboard', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [Dashboard],
+      providers: [provideRouter([]), provideNativeDateAdapter()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(Dashboard);
@@ -28,5 +35,12 @@ describe('Dashboard', () => {
 
     component.closeModal();
     expect(component.isModalOpen).toBe(false);
+  });
+
+  it('should format monthly chart axis values in thousands', () => {
+    const callback = component.monthlyChartOptions?.scales?.['y']?.ticks?.callback;
+
+    expect(callback).toBeDefined();
+    expect(Reflect.apply(callback!, undefined, [3000, 0, []])).toBe('3k');
   });
 });

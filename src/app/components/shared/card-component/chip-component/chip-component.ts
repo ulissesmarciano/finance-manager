@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 
 type IconName = 'north_east' | 'south_east';
@@ -10,10 +10,10 @@ type ChipType = 'metricChipComponent' | 'infoChipComponent' | 'percentageChipCom
   templateUrl: './chip-component.html',
 })
 export class ChipComponent {
-  @Input() name = '';
-  @Input() icon: IconName | null = null;
-  @Input() chipType: ChipType = 'metricChipComponent';
-  @Input() indicator: number | null = null;
+  chipValue = input<string | null>(null);
+  chipIcon = input<IconName | null>(null);
+  chipType = input<ChipType>('metricChipComponent');
+  chipIndicator = input<number | null>(null);
 
   variantMetricClasses(): string {
     const variants: Record<IconName, string> = {
@@ -23,7 +23,12 @@ export class ChipComponent {
         'flex items-center gap-1 py-1 px-2 rounded-lg bg-destructive-soft text-destructive text-12',
     };
 
-    return this.icon ? variants[this.icon] : '';
+    const icon = this.chipIcon();
+    if (!icon) {
+      return '';
+    }
+
+    return variants[icon];
   }
 
   variantPercentageClasses(indicator: number | null): string {

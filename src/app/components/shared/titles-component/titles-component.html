@@ -1,4 +1,13 @@
-@if (size() === 'md') {
+@if (size() === 'sm') {
+  <div>
+    <h2 class="text-14 font-semibold text-foreground">{{ title() }}</h2>
+    @if (subtitle()) {
+      <p class="mt-0.5 truncate text-xs text-muted-foreground">
+        {{ subtitle() }}
+      </p>
+    }
+  </div>
+} @else if (size() === 'md') {
   <div>
     <h2 class="text-16 font-bold text-foreground">{{ title() }}</h2>
     <p class="mt-0.5 truncate text-sm text-12 text-muted-foreground">
