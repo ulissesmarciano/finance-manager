@@ -20,6 +20,6 @@ describe('TransactionsHeaderActions', () => {
     const button = fixture.nativeElement.querySelector('button') as HTMLButtonElement;
 
     expect(button).toBeTruthy();
-    expect(button.textContent).toContain('Novo orçamento');
+    expect(button.textContent).toContain('Adicionar transação');
   });
 });
