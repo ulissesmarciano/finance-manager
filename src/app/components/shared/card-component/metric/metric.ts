@@ -23,7 +23,7 @@ export class Metric {
     const variants: Record<CardType, MetricClasses> = {
       summary: {
         container: 'flex flex-col',
-        label: 'text-primary-foreground opacity-80 text-14',
+        label: 'text-primary-foreground opacity-80 text-12',
         value: 'text-primary-foreground text-18 font-bold',
       },
       metrics: {

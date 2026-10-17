@@ -1,0 +1,62 @@
+[
+  {
+    "id": "tx-2026-08-24-salary",
+    "icon": "account_balance_wallet",
+    "description": "Salário mensal",
+    "subtitle": "Salário · Poupança",
+    "nature": "Fixa",
+    "status": "Pago",
+    "date": "2026-08-24",
+    "amount": 8600
+  },
+  {
+    "id": "tx-2026-08-23-rent",
+    "icon": "home",
+    "description": "Aluguel do apartamento",
+    "subtitle": "Moradia · Pix",
+    "nature": "Fixa",
+    "status": "Pago",
+    "date": "2026-08-23",
+    "amount": -2150
+  },
+  {
+    "id": "tx-2026-08-22-groceries",
+    "icon": "restaurant",
+    "description": "Supermercado",
+    "subtitle": "Alimentação · Cartão de Crédito",
+    "nature": "Variável",
+    "status": "Pago",
+    "date": "2026-08-22",
+    "amount": -312.4
+  },
+  {
+    "id": "tx-2026-08-21-design",
+    "icon": "account_balance_wallet",
+    "description": "Freelance de design",
+    "subtitle": "Freelance · Pix",
+    "nature": "Variável",
+    "status": "Pendente",
+    "date": "2026-08-21",
+    "amount": 1450
+  },
+  {
+    "id": "tx-2026-08-20-transit",
+    "icon": "directions_bus",
+    "description": "Passe de metrô",
+    "subtitle": "Transporte · Cartão de Crédito",
+    "nature": "Fixa",
+    "status": "Pago",
+    "date": "2026-08-20",
+    "amount": -96
+  },
+  {
+    "id": "tx-2026-08-19-movie",
+    "icon": "movie",
+    "description": "Cinema e jantar",
+    "subtitle": "Lazer · Cartão de Crédito",
+    "nature": "Variável",
+    "status": "Pago",
+    "date": "2026-08-19",
+    "amount": -128.9
+  }
+]

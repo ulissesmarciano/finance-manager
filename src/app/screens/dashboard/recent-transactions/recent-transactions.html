@@ -1,0 +1,88 @@
+<div
+  class="flex flex-col p-6 gap-4 bg-primary-foreground rounded-lg shadow-md border border-border hover:shadow-lg hover:translate-y-up-1 transition-transform duration-200"
+>
+  <div class="flex items-center justify-between">
+    <app-titles-component
+      size="md"
+      [title]="'Transações recentes'"
+      [subtitle]="'Atividade mais recente em todas as contas'"
+    ></app-titles-component>
+    <app-link
+      [label]="'Ver todas'"
+      [linkType]="'primary-inverted'"
+      [size]="'md'"
+      route="/transactions"
+    ></app-link>
+  </div>
+  <div class="w-full min-w-0 overflow-x-auto">
+    <table class="w-full min-w-175 border-collapse text-left">
+      <thead>
+        <tr class="border-b border-t border-border text-12 font-semibold text-muted-foreground">
+          <th class="px-6 py-3">DESCRIÇÃO</th>
+          <th class="px-6 py-3">NATUREZA</th>
+          <th class="px-6 py-3">SITUAÇÃO</th>
+          <th class="px-6 py-3">DATA</th>
+          <th class="px-6 py-3 text-right">VALOR</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (transaction of transactions; track transaction.id) {
+          <tr class="border-b border-border last:border-0">
+            <td class="px-6 py-4">
+              <div class="flex items-center gap-3">
+                <span class="flex rounded-lg bg-muted p-2 text-muted-foreground" aria-hidden="true">
+                  <mat-icon
+                    fontSet="material-icons-outlined"
+                    class="text-center size-5-sm! text-18!"
+                  >
+                    {{ transaction.icon }}
+                  </mat-icon>
+                </span>
+
+                <div>
+                  <p class="text-14 font-medium text-foreground">
+                    {{ transaction.description }}
+                  </p>
+                  <p class="text-12 text-muted-foreground">
+                    {{ transaction.subtitle }}
+                  </p>
+                </div>
+              </div>
+            </td>
+
+            <td class="px-6 py-4">
+              <span class="rounded-full bg-muted text-muted-foreground px-3-sm py-1 text-12">
+                {{ transaction.nature }}
+              </span>
+            </td>
+
+            <td class="px-6 py-4">
+              <span
+                class="rounded-full px-3-sm py-1 text-12 font-semibold"
+                [class.bg-success-soft]="transaction.status === 'Pago'"
+                [class.text-success]="transaction.status === 'Pago'"
+                [class.bg-accent-soft]="transaction.status === 'Pendente'"
+                [class.text-accent]="transaction.status === 'Pendente'"
+              >
+                {{ transaction.status }}
+              </span>
+            </td>
+
+            <td class="whitespace-nowrap px-6 py-4 text-muted-foreground text-14">
+              {{ transaction.date | date: 'dd/MM/yyyy' : 'UTC' }}
+            </td>
+
+            <td
+              class="whitespace-nowrap px-6 py-4 text-right font-semibold text-14"
+              [class.text-emerald-600]="transaction.amount > 0"
+            >
+              {{ transaction.amount > 0 ? '+' : ''
+              }}{{ transaction.amount | currency: 'BRL' : 'symbol' : '1.2-2' : 'pt-BR' }}
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
