@@ -1,5 +1,10 @@
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RecentTransactions } from './recent-transactions';
+import { provideRouter } from '@angular/router';
+
+registerLocaleData(localePt, 'pt-BR');
 
 describe('RecentTransactions', () => {
   let component: RecentTransactions;
@@ -8,6 +13,7 @@ describe('RecentTransactions', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [RecentTransactions],
+      providers: [provideRouter([])],
     }).compileComponents();
 
     fixture = TestBed.createComponent(RecentTransactions);
