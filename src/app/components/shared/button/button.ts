@@ -29,8 +29,7 @@ export class Button {
     const variants: Record<ButtonVariant, string> = {
       primary:
         'bg-button-primary text-primary-foreground py-3-sm font-semibold px-4 hover:translate-y-up-1',
-      secondary:
-        'bg-button-secondary py-3-sm font-semibold px-4 hover:bg-button-secondary-hover',
+      secondary: 'bg-button-secondary py-3-sm font-semibold px-4 hover:bg-button-secondary-hover',
       third:
         'bg-button-third text-muted-foreground py-3-sm font-semibold px-4 hover:text-foreground',
       'outlined-secondary':
