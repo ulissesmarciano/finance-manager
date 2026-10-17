@@ -30,11 +30,11 @@ export class Button {
       primary:
         'bg-button-primary text-primary-foreground py-3-sm font-semibold px-4 hover:translate-y-up-1',
       secondary:
-        'bg-button-secondary text-muted-foreground py-3-sm font-semibold px-4 hover:bg-button-secondary-hover',
+        'bg-button-secondary py-3-sm font-semibold px-4 hover:bg-button-secondary-hover',
       third:
         'bg-button-third text-muted-foreground py-3-sm font-semibold px-4 hover:text-foreground',
       'outlined-secondary':
-        'bg-button-secondary py-3-sm font-semibold px-4 hover:bg-primary-soft hover:text-foreground border-none',
+        'bg-button-secondary text-muted-foreground py-3-sm font-semibold px-4 hover:bg-primary-soft hover:text-foreground border-none',
       'only-icon-secondary':
         'bg-button-secondary text-muted-foreground py-3-sm font-semibold px-3-sm hover:bg-button-secondary-hover',
     };
