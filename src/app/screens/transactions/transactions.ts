@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
+import { TransactionFilters } from './transaction-filters/transaction-filters';
 
 @Component({
-  imports: [],
+  imports: [TransactionFilters],
   selector: 'app-transactions',
   templateUrl: './transactions.html',
 })
