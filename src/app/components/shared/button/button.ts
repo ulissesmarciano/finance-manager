@@ -34,7 +34,7 @@ export class Button {
       third:
         'bg-button-third text-muted-foreground py-3-sm font-semibold px-4 hover:text-foreground',
       'outlined-secondary':
-        'bg-button-secondary text-muted-foreground py-3-sm font-semibold px-4 hover:bg-primary-soft hover:text-foreground border-none',
+        'bg-button-secondary py-3-sm font-semibold px-4 hover:bg-primary-soft hover:text-foreground border-none',
       'only-icon-secondary':
         'bg-button-secondary text-muted-foreground py-3-sm font-semibold px-3-sm hover:bg-button-secondary-hover',
     };
