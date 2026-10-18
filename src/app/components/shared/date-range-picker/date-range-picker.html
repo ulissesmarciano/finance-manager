@@ -6,12 +6,14 @@
   >
     <mat-date-range-input [rangePicker]="picker" separator="–">
       <input
+        class="text-14! text-muted-foreground!"
         matStartDate
         placeholder="Data inicial"
         aria-label="Data inicial"
         (dateChange)="startDate = $event.value"
       />
       <input
+        class="text-14! text-muted-foreground!"
         matEndDate
         placeholder="Data final"
         aria-label="Data final"
@@ -20,7 +22,7 @@
     </mat-date-range-input>
     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-date-range-picker
-      panelClass="date-range-picker-panel [&_.mat-calendar-body-cell-content]:text-sm [&_.mat-calendar-table-header_th]:text-xs [&_.mat-calendar-period-button]:text-sm"
+      panelClass="date-range-picker-panel font-semibold [&_.mat-calendar-body-cell-content]:text-12 text-muted-foreground [&_.mat-calendar-table-header]:text-12 text-muted-foreground [&_.mat-calendar-period-button]:text-12 text-muted-foreground "
       #picker
     ></mat-date-range-picker>
   </mat-form-field>
