@@ -3,6 +3,10 @@ import { describe, beforeEach, it, expect } from 'vitest';
 import { Transactions } from './transactions';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { provideRouter } from '@angular/router';
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+
+registerLocaleData(localePt, 'pt-BR');
 
 describe('Transactions', () => {
   let component: Transactions;
@@ -17,6 +21,7 @@ describe('Transactions', () => {
     fixture = TestBed.createComponent(Transactions);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    await fixture.whenStable();
   });
 
   it('should create', () => {
