@@ -1,6 +1,10 @@
 <div class="py-6 px-5">
   <section class="grid gap-5 min-w-0">
-    <app-transaction-filters></app-transaction-filters>
-    <app-transactions-table class="block w-full min-w-0"></app-transactions-table>
+    <app-transaction-filters (filtersChange)="onFiltersChange($event)"></app-transaction-filters>
+
+    <app-transactions-table
+      class="block w-full min-w-0"
+      [transactions]="filteredTransactions"
+    ></app-transactions-table>
   </section>
 </div>

@@ -27,4 +27,45 @@ describe('Transactions', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should filter transactions by type, nature, and payment method', () => {
+    component.onFiltersChange({
+      type: 'income',
+      nature: 'all',
+      paymentMethod: 'all',
+    });
+    expect(
+      component.filteredTransactions.every((transaction) => transaction.type === 'income'),
+    ).toBe(true);
+    component.onFiltersChange({
+      type: 'all',
+      nature: 'Fixa',
+      paymentMethod: 'all',
+    });
+    expect(
+      component.filteredTransactions.every((transaction) => transaction.nature === 'Fixa'),
+    ).toBe(true);
+    component.onFiltersChange({
+      type: 'all',
+      nature: 'all',
+      paymentMethod: 'pix',
+    });
+    expect(
+      component.filteredTransactions.every((transaction) => transaction.paymentMethod === 'pix'),
+    ).toBe(true);
+    component.onFiltersChange({
+      type: 'income',
+      nature: 'Variável',
+      paymentMethod: 'pix',
+    });
+    expect(component.filteredTransactions.map((transaction) => transaction.id)).toEqual([
+      'tx-2026-08-21-design',
+    ]);
+    component.onFiltersChange({
+      type: 'income',
+      nature: 'Fixa',
+      paymentMethod: 'pix',
+    });
+    expect(component.filteredTransactions).toEqual([]);
+  });
 });

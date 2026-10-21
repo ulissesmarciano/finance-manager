@@ -3,6 +3,7 @@ import { TransactionsTable } from './transactions-table';
 import { provideRouter } from '@angular/router';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
+import { TRANSACTIONS } from '../transactions-data';
 
 registerLocaleData(localePt, 'pt-BR');
 
@@ -18,6 +19,7 @@ describe('TransactionsTable', () => {
 
     fixture = TestBed.createComponent(TransactionsTable);
     component = fixture.componentInstance;
+    fixture.componentRef.setInput('transactions', TRANSACTIONS);
     fixture.detectChanges();
     await fixture.whenStable();
   });
