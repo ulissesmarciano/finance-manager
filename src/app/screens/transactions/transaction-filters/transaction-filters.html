@@ -16,7 +16,7 @@
         <app-button
           [variant]="selectedType === option.value ? 'secondary' : 'third'"
           [size]="'sm'"
-          (click)="selectedType = option.value"
+          (click)="selectType(option.value)"
           [label]="option.label"
         ></app-button>
       }
@@ -30,7 +30,7 @@
         <app-button
           [variant]="selectedNature === option.value ? 'secondary' : 'third'"
           [size]="'sm'"
-          (click)="selectedNature = option.value"
+          (click)="selectNature(option.value)"
           [label]="option.label"
         ></app-button>
       }
@@ -43,7 +43,7 @@
         <app-button
           [variant]="selectedPaymentMethod === option.value ? 'secondary' : 'third'"
           [size]="'sm'"
-          (click)="selectedPaymentMethod = option.value"
+          (click)="selectPaymentMethod(option.value)"
           [label]="option.label"
         ></app-button>
       }
