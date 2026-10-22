@@ -12,4 +12,5 @@
 <app-modal
   [isOpen]="transactionModalState.isOpen()"
   (closed)="transactionModalState.close()"
+  (transactionCreated)="onTransactionCreated($event)"
 ></app-modal>
