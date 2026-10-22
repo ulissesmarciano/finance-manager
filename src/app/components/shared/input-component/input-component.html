@@ -1,4 +1,10 @@
-@if (type() === 'email' || type() === 'password' || type() === 'text') {
+@if (
+  type() === 'email' ||
+  type() === 'password' ||
+  type() === 'text' ||
+  type() === 'number' ||
+  type() === 'date'
+) {
   <div class="relative flex flex-col gap-1">
     @if (label()) {
       <span class="text-12 text-muted-foreground font-semibold">{{ label() }}</span>
@@ -16,6 +22,7 @@
       <input
         [class]="'w-full'"
         [type]="type()"
+        [attr.step]="type() === 'number' ? 'any' : null"
         [placeholder]="placeholder()"
         [value]="value().toString()"
         [disabled]="disabled()"
@@ -40,4 +47,29 @@
     (change)="onInput($event)"
     (blur)="markTouched()"
   />
+} @else if (type() === 'select') {
+  <div class="flex flex-col gap-2-sm">
+    @if (label()) {
+      <label for="category" class="text-12 font-semibold text-muted-foreground">{{
+        label()
+      }}</label>
+    }
+    <mat-select
+      id="category"
+      panelClass="category-select-panel"
+      [value]="value().toString()"
+      [disabled]="disabled()"
+      [class]="
+        hasError()
+          ? 'category-select text-14 py-2 px-3 border border-destructive rounded-lg items-center gap-2 inline-flex transition-all duration-200 focus-within:border-blue-500 focus-within:ring-4 focus-within:ring-blue-100'
+          : 'category-select text-14 py-2 px-3 border border-default rounded-lg items-center gap-2 inline-flex transition-all duration-200 focus-within:border-blue-500 focus-within:ring-4 focus-within:ring-blue-100'
+      "
+      (selectionChange)="onSelectChange($event.value)"
+      (closed)="markTouched()"
+    >
+      @for (option of options(); track option.value) {
+        <mat-option [value]="option.value">{{ option.label }}</mat-option>
+      }
+    </mat-select>
+  </div>
 }
