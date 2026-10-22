@@ -5,6 +5,7 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { provideRouter } from '@angular/router';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
+import { TransactionModalState } from './transaction-modal-state';
 
 registerLocaleData(localePt, 'pt-BR');
 
@@ -26,6 +27,22 @@ describe('Transactions', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should render and close the add transaction modal on the transactions page', () => {
+    const modalState = TestBed.inject(TransactionModalState);
+    modalState.open();
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.querySelector('[role="dialog"]')).toBeTruthy();
+
+    const closeButton = fixture.nativeElement.querySelector(
+      'app-modal button',
+    ) as HTMLButtonElement;
+    closeButton.click();
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.querySelector('[role="dialog"]')).toBeNull();
   });
 
   it('should filter transactions by type, nature, and payment method', () => {
