@@ -1,8 +1,8 @@
 @if (isOpen()) {
   <div
-    class="fixed inset-0 z-50 flex items-center justify-center bg-foreground/40 p-4"
+    class="fixed inset-0 z-50 flex items-center justify-center bg-foreground/40 p-4 backdrop-blur-sm"
     role="presentation"
-    (click)="closed.emit()"
+    (click)="close()"
     (keydown)="handleOverlayKeydown($event)"
   >
     <section
@@ -14,19 +14,116 @@
       (keydown)="handleContentKeydown($event)"
     >
       <div class="flex items-center justify-between gap-4">
-        <h2 id="modal-title" class="text-20 font-bold">Adicionar transação</h2>
+        <app-titles-component
+          class="min-w-0 flex-1"
+          [title]="'Nova transação'"
+          [subtitle]="'Registre um lançamento em poucos segundos'"
+          [size]="'ml'"
+        ></app-titles-component>
         <app-button
+          class="shrink-0"
           variant="secondary"
           icon="close"
           aria-label="Fechar modal"
-          (click)="closed.emit()"
+          (clicked)="close()"
         >
         </app-button>
       </div>
-
-      <p class="mt-4 text-14 text-muted-foreground">
-        Este é o conteúdo do modal. Aqui você poderá adicionar o formulário da transação.
-      </p>
+      <form class="flex flex-col gap-4 mt-5" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="flex rounded-lg bg-secondary p-1 gap-1 w-full">
+          @for (option of typeOptions; track option.value) {
+            <app-button
+              class="min-w-0 flex-1 [&>button]:w-full"
+              [variant]="
+                form.controls.type.value !== option.value
+                  ? 'third'
+                  : option.value === 'income'
+                    ? 'success'
+                    : 'primary'
+              "
+              [size]="'md'"
+              (clicked)="selectType(option.value)"
+              [label]="option.label"
+            ></app-button>
+          }
+        </div>
+        <app-input-component
+          label="Descrição"
+          type="text"
+          placeholder="ex.: Compras no mercado"
+          formControlName="description"
+          [hasError]="hasError(form.controls.description)"
+          [errorMessage]="getErrorMessage(form.controls.description)"
+        ></app-input-component>
+        <div class="grid gap-4 sm:grid-cols-2">
+          <app-input-component
+            label="Valor"
+            type="number"
+            placeholder="0,00"
+            formControlName="amount"
+            [hasError]="hasError(form.controls.amount)"
+            [errorMessage]="getErrorMessage(form.controls.amount)"
+          ></app-input-component>
+          <app-input-component
+            label="Data"
+            type="date"
+            formControlName="date"
+            [hasError]="hasError(form.controls.date)"
+            [errorMessage]="getErrorMessage(form.controls.date)"
+          ></app-input-component>
+        </div>
+        <div class="grid gap-4 sm:grid-cols-2">
+          <app-input-component
+            label="Categoria"
+            type="select"
+            [options]="categoryOptions"
+            formControlName="category"
+            [hasError]="hasError(form.controls.category)"
+            [errorMessage]="getErrorMessage(form.controls.category)"
+          ></app-input-component>
+          <app-input-component
+            label="Forma de pagamento"
+            type="select"
+            [options]="paymentOptions"
+            formControlName="paymentMethod"
+            [hasError]="hasError(form.controls.paymentMethod)"
+            [errorMessage]="getErrorMessage(form.controls.paymentMethod)"
+          ></app-input-component>
+        </div>
+        <div class="flex flex-col gap-2">
+          <p class="text-muted-foreground font-semibold text-12">Natureza</p>
+          <div class="flex flex-wrap items-center gap-2 w-full rounded-lg bg-secondary p-1">
+            <app-button
+              class="min-w-0 flex-1 [&>button]:w-full"
+              [variant]="form.controls.nature.value === 'Fixa' ? 'secondary' : 'third'"
+              size="sm"
+              label="Fixa"
+              (clicked)="selectNature('Fixa')"
+            ></app-button>
+            <app-button
+              class="min-w-0 flex-1 [&>button]:w-full"
+              [variant]="form.controls.nature.value === 'Variável' ? 'secondary' : 'third'"
+              size="sm"
+              label="Variável"
+              (clicked)="selectNature('Variável')"
+            ></app-button>
+          </div>
+        </div>
+        <div class="flex gap-3 sm:justify-end">
+          <app-button
+            class="min-w-0 flex-1 [&>button]:w-full sm:[&>button]:w-fit sm:flex-none"
+            label="Cancelar"
+            variant="third"
+            (clicked)="close()"
+          ></app-button>
+          <app-button
+            class="min-w-0 flex-1 [&>button]:w-full sm:[&>button]:w-fit sm:flex-none"
+            label="Salvar transação"
+            variant="primary"
+            type="submit"
+          ></app-button>
+        </div>
+      </form>
     </section>
   </div>
 }

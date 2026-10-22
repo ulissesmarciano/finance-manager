@@ -73,6 +73,7 @@
   --color-button-secondary: oklch(100% 0 0);
   --color-button-secondary-hover: oklch(98.4% 0.005 247.9);
   --color-button-third: oklch(98.4% 0.005 247.9);
+  --color-button-success: oklch(68% 0.15 158);
 
   /* Spacing */
   --spacing-1: 4px;
@@ -171,6 +172,21 @@
     font-family: var(--font-display);
     letter-spacing: -0.02em;
   }
+}
+
+.category-select-panel {
+  background-color: var(--color-card);
+  --mat-select-panel-background-color: var(--color-card);
+}
+
+.category-select {
+  --mat-select-trigger-text-size: var(--text-14);
+  --mat-select-trigger-text-line-height: 20px;
+}
+
+.category-select-panel .mat-mdc-option {
+  --mat-option-selected-state-layer-color: var(--color-primary-soft);
+  --mat-option-selected-state-label-text-color: var(--color-foreground);
 }
 
 .mat-datepicker-content:has(.date-range-picker-panel) {

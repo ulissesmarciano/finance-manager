@@ -85,4 +85,21 @@ describe('Transactions', () => {
     });
     expect(component.filteredTransactions).toEqual([]);
   });
+
+  it('should add a newly created transaction to the table', () => {
+    component.onTransactionCreated({
+      id: 'tx-new',
+      icon: 'account_balance_wallet',
+      description: 'Nova transação',
+      category: 'Moradia',
+      type: 'expense',
+      nature: 'Fixa',
+      paymentMethod: 'pix',
+      status: 'Pendente',
+      date: '2026-10-22',
+      amount: -25,
+    });
+
+    expect(component.filteredTransactions[0].id).toBe('tx-new');
+  });
 });
