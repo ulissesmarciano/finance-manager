@@ -54,4 +54,19 @@ describe('InputComponent', () => {
 
     expect(component.value()).toBe('');
   });
+
+  it('should select the first option by default for a select', () => {
+    const onChange = vi.fn();
+    component.registerOnChange(onChange);
+    fixture.componentRef.setInput('type', 'select');
+    fixture.componentRef.setInput('options', [
+      { value: 'home', label: 'Moradia' },
+      { value: 'food', label: 'Alimentação' },
+    ]);
+
+    component.ngOnInit();
+
+    expect(component.value()).toBe('home');
+    expect(onChange).toHaveBeenCalledWith('home');
+  });
 });
