@@ -73,6 +73,7 @@
   --color-button-secondary: oklch(100% 0 0);
   --color-button-secondary-hover: oklch(98.4% 0.005 247.9);
   --color-button-third: oklch(98.4% 0.005 247.9);
+  --color-button-success: oklch(68% 0.15 158);
 
   /* Spacing */
   --spacing-1: 4px;
