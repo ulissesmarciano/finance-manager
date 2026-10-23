@@ -7,9 +7,10 @@ import { TransactionsTable } from './transactions-table/transactions-table';
 import { TRANSACTIONS, type Transaction } from './transactions-data';
 import { Modal } from '../../components/shared/modal/modal';
 import { TransactionModalState } from './transaction-modal-state';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
-  imports: [TransactionFilters, TransactionsTable, Modal],
+  imports: [TransactionFilters, TransactionsTable, Modal, MatIcon],
   selector: 'app-transactions',
   templateUrl: './transactions.html',
 })
