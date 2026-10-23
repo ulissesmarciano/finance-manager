@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { describe, beforeEach, it, expect, vi } from 'vitest';
 import { Modal } from './modal';
 
@@ -76,6 +77,7 @@ describe('Modal', () => {
   it('should emit a transaction and close after submitting valid values', () => {
     const transactionSpy = vi.spyOn(component.transactionCreated, 'emit');
     const closedSpy = vi.spyOn(component.closed, 'emit');
+    const snackBarSpy = vi.spyOn(fixture.debugElement.injector.get(MatSnackBar), 'open');
     component.form.setValue({
       description: 'Salário',
       amount: '1250.50',
@@ -100,6 +102,16 @@ describe('Modal', () => {
       }),
     );
     expect(closedSpy).toHaveBeenCalledOnce();
+    expect(snackBarSpy).toHaveBeenCalledWith(
+      'Transação salva com sucesso.',
+      '×',
+      expect.objectContaining({
+        duration: 3000,
+        horizontalPosition: 'end',
+        verticalPosition: 'top',
+        panelClass: ['success-snackbar'],
+      }),
+    );
     expect(component.form.controls.description.value).toBe('');
   });
   it('should update the selected type', () => {
