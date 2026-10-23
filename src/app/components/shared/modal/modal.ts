@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -8,6 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Button } from '../button/button';
 import { MatInputModule } from '@angular/material/input';
 import { TitlesComponent } from '../titles-component/titles-component';
@@ -34,6 +35,7 @@ const positiveAmountValidator: ValidatorFn = (control) => {
     ReactiveFormsModule,
     TitlesComponent,
     InputComponent,
+    MatSnackBarModule,
   ],
   selector: 'app-modal',
   templateUrl: './modal.html',
@@ -103,6 +105,8 @@ export class Modal {
     nature: new FormControl<TransactionNature>('Fixa', { nonNullable: true }),
   });
 
+  private readonly snackBar = inject(MatSnackBar);
+
   selectType(value: TransactionType): void {
     this.form.controls.type.setValue(value);
   }
@@ -136,6 +140,12 @@ export class Modal {
   onSubmit(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
+      this.snackBar.open('Preencha os campos obrigatórios.', 'Fechar', {
+        duration: 3000,
+        horizontalPosition: 'end',
+        verticalPosition: 'top',
+        panelClass: ['error-snackbar'],
+      });
       return;
     }
 
@@ -162,6 +172,12 @@ export class Modal {
     };
 
     this.transactionCreated.emit(transaction);
+    this.snackBar.open('Transação salva com sucesso.', '×', {
+      duration: 3000,
+      horizontalPosition: 'end',
+      verticalPosition: 'top',
+      panelClass: ['success-snackbar'],
+    });
     this.close();
   }
 
