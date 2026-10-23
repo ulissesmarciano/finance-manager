@@ -7,9 +7,17 @@
       [transactions]="filteredTransactions"
     ></app-transactions-table>
   </section>
+  <button
+    class="fixed bottom-6 right-6 z-30 grid size-14 place-items-center rounded-full bg-accent text-accent-foreground shadow-(--shadow-lift) transition-transform hover:scale-105 lg:hidden"
+    aria-label="Adicionar transação"
+    (click)="transactionModalState.open()"
+  >
+    <mat-icon>add</mat-icon>
+  </button>
 </div>
 
 <app-modal
   [isOpen]="transactionModalState.isOpen()"
   (closed)="transactionModalState.close()"
+  (transactionCreated)="onTransactionCreated($event)"
 ></app-modal>
