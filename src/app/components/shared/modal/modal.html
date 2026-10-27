@@ -16,8 +16,12 @@
       <div class="flex items-center justify-between gap-4">
         <app-titles-component
           class="min-w-0 flex-1"
-          [title]="'Nova transação'"
-          [subtitle]="'Registre um lançamento em poucos segundos'"
+          [title]="transactionToEdit() ? 'Editar transação' : 'Nova transação'"
+          [subtitle]="
+            transactionToEdit()
+              ? 'Atualize os dados do lançamento'
+              : 'Registre um lançamento em poucos segundos'
+          "
           [size]="'ml'"
         ></app-titles-component>
         <app-button
@@ -118,7 +122,7 @@
           ></app-button>
           <app-button
             class="min-w-0 flex-1 [&>button]:w-full sm:[&>button]:w-fit sm:flex-none"
-            label="Salvar transação"
+            [label]="transactionToEdit() ? 'Salvar alterações' : 'Salvar transação'"
             variant="primary"
             type="submit"
           ></app-button>

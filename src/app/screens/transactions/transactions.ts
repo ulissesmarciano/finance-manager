@@ -23,14 +23,38 @@ export class Transactions {
     paymentMethod: 'all',
   };
   filteredTransactions: Transaction[] = [...TRANSACTIONS];
+  editingTransaction: Transaction | null = null;
 
   onFiltersChange(filters: TransactionFiltersState): void {
     this.activeFilters = filters;
     this.applyFilters();
   }
 
+  onAddRequested(): void {
+    this.editingTransaction = null;
+    this.transactionModalState.open();
+  }
+
+  onEditRequested(transaction: Transaction): void {
+    this.editingTransaction = transaction;
+    this.transactionModalState.open();
+  }
+
+  onModalClosed(): void {
+    this.transactionModalState.close();
+    this.editingTransaction = null;
+  }
+
   onTransactionCreated(transaction: Transaction): void {
     this.transactions = [transaction, ...this.transactions];
+    this.applyFilters();
+  }
+
+  onTransactionUpdated(updated: Transaction): void {
+    this.transactions = this.transactions.map((transaction) =>
+      transaction.id === updated.id ? updated : transaction,
+    );
+
     this.applyFilters();
   }
 
