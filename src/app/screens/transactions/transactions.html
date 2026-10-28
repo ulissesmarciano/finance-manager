@@ -6,6 +6,7 @@
       class="block w-full min-w-0"
       [transactions]="filteredTransactions"
       (editedRequest)="onEditRequested($event)"
+      (deleteRequested)="onDeleteRequested($event)"
     ></app-transactions-table>
   </section>
   <button

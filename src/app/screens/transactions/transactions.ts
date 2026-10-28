@@ -58,6 +58,12 @@ export class Transactions {
     this.applyFilters();
   }
 
+  onDeleteRequested(transaction: Transaction): void {
+    this.transactions = this.transactions.filter((item) => item.id !== transaction.id);
+
+    this.applyFilters();
+  }
+
   private applyFilters(): void {
     this.filteredTransactions = this.transactions.filter((transaction) => {
       const matchesType =

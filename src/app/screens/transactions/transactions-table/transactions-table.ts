@@ -12,6 +12,7 @@ import { Transaction } from '../transactions-data';
 export class TransactionsTable {
   transactions = input<Transaction[]>([]);
   editedRequest = output<Transaction>();
+  deleteRequested = output<Transaction>();
 
   readonly getPaymentMethodLabel = getPaymentMethodLabel;
 }

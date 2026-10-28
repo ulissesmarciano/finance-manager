@@ -74,7 +74,13 @@
                 aria-label="Editar transação"
                 (clicked)="editedRequest.emit(transaction)"
               ></app-button>
-              <app-button size="sm" variant="only-icon-secondary" icon="delete"></app-button>
+              <app-button
+                size="sm"
+                variant="only-icon-secondary"
+                icon="delete"
+                aria-label="Excluir transação"
+                (clicked)="deleteRequested.emit(transaction)"
+              ></app-button>
             </td>
           </tr>
         }
