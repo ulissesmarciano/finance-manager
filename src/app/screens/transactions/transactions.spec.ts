@@ -193,4 +193,38 @@ describe('Transactions', () => {
       transactionToDelete.description,
     );
   });
+
+  it('should ignore a delete request for a transaction that is not in the list', () => {
+    const originalTransactions = [...component.filteredTransactions()];
+    const unknownTransaction = {
+      ...originalTransactions[0],
+      id: 'tx-unknown',
+    };
+
+    component.onDeleteRequested(unknownTransaction);
+
+    expect(component.filteredTransactions()).toEqual(originalTransactions);
+  });
+
+  it('should not restore a transaction if another with the same id already exists', async () => {
+    const transactionToDelete = component.filteredTransactions()[0];
+
+    component.onDeleteRequested(transactionToDelete);
+    component.onTransactionCreated({
+      ...transactionToDelete,
+      description: 'Transação recriada',
+    });
+
+    const undoButton = document.body.querySelector(
+      '.mat-mdc-snack-bar-action',
+    ) as HTMLButtonElement | null;
+    expect(undoButton).not.toBeNull();
+
+    undoButton!.click();
+    await fixture.whenStable();
+
+    expect(
+      component.filteredTransactions().filter((item) => item.id === transactionToDelete.id),
+    ).toEqual([{ ...transactionToDelete, description: 'Transação recriada' }]);
+  });
 });
