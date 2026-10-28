@@ -114,6 +114,40 @@ describe('Modal', () => {
     );
     expect(component.form.controls.description.value).toBe('');
   });
+
+  it('should emit the updated transaction while preserving its existing fields', () => {
+    const existingTransaction = {
+      id: 'tx-existing',
+      icon: 'home',
+      description: 'Aluguel',
+      category: 'Moradia',
+      type: 'expense' as const,
+      nature: 'Fixa' as const,
+      paymentMethod: 'pix' as const,
+      status: 'Pago' as const,
+      date: '2026-10-01',
+      amount: -1500,
+    };
+    fixture.componentRef.setInput('transactionToEdit', existingTransaction);
+    fixture.detectChanges();
+
+    const updatedSpy = vi.spyOn(component.transactionUpdated, 'emit');
+    const createdSpy = vi.spyOn(component.transactionCreated, 'emit');
+    component.form.patchValue({
+      description: 'Aluguel atualizado',
+      amount: '1600',
+    });
+
+    component.onSubmit();
+
+    expect(updatedSpy).toHaveBeenCalledWith({
+      ...existingTransaction,
+      description: 'Aluguel atualizado',
+      amount: -1600,
+    });
+    expect(createdSpy).not.toHaveBeenCalled();
+  });
+
   it('should update the selected type', () => {
     component.selectType('expense');
 
@@ -205,6 +239,42 @@ describe('Modal', () => {
       expect.objectContaining({
         type: 'expense',
         amount: -125.5,
+      }),
+    );
+  });
+
+  it('should keep an unknown category when editing a transaction', () => {
+    const transaction = {
+      id: 'tx-freelance',
+      icon: 'account_balance_wallet',
+      description: 'Trabalho freelance',
+      category: 'Freelance',
+      type: 'income' as const,
+      nature: 'Variável' as const,
+      paymentMethod: 'pix' as const,
+      status: 'Pago' as const,
+      date: '2026-10-20',
+      amount: 500,
+    };
+
+    fixture.componentRef.setInput('transactionToEdit', transaction);
+    fixture.detectChanges();
+
+    const updatedSpy = vi.spyOn(component.transactionUpdated, 'emit');
+
+    expect(component.form.controls.category.value).toBe('Freelance');
+    expect(
+      component.categoryOptions.some(
+        (option) => option.value === 'Freelance' && option.label === 'Freelance',
+      ),
+    ).toBe(true);
+
+    component.onSubmit();
+
+    expect(updatedSpy).toHaveBeenCalledWith(
+      expect.objectContaining({
+        id: 'tx-freelance',
+        category: 'Freelance',
       }),
     );
   });

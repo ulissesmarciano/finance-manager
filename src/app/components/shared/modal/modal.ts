@@ -1,4 +1,4 @@
-import { Component, inject, input, output } from '@angular/core';
+import { Component, effect, inject, input, output } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -44,20 +44,8 @@ export class Modal {
   isOpen = input(false);
   closed = output<void>();
   transactionCreated = output<Transaction>();
-
-  handleOverlayKeydown(event: KeyboardEvent): void {
-    if (event.key === 'Escape') {
-      this.close();
-    }
-  }
-
-  handleContentKeydown(event: KeyboardEvent): void {
-    event.stopPropagation();
-
-    if (event.key === 'Escape') {
-      this.close();
-    }
-  }
+  transactionToEdit = input<Transaction | null>(null);
+  transactionUpdated = output<Transaction>();
 
   readonly typeOptions: { value: TransactionType; label: string }[] = [
     { value: 'income', label: 'Receita' },
@@ -106,6 +94,41 @@ export class Modal {
   });
 
   private readonly snackBar = inject(MatSnackBar);
+
+  constructor() {
+    effect(() => {
+      const transaction = this.transactionToEdit();
+
+      if (!transaction) {
+        this.resetForm();
+        return;
+      }
+
+      this.form.patchValue({
+        description: transaction.description,
+        amount: String(Math.abs(transaction.amount)),
+        date: transaction.date,
+        category: this.categoryValueFor(transaction.category),
+        paymentMethod: transaction.paymentMethod,
+        type: transaction.type,
+        nature: transaction.nature,
+      });
+    });
+  }
+
+  handleOverlayKeydown(event: KeyboardEvent): void {
+    if (event.key === 'Escape') {
+      this.close();
+    }
+  }
+
+  handleContentKeydown(event: KeyboardEvent): void {
+    event.stopPropagation();
+
+    if (event.key === 'Escape') {
+      this.close();
+    }
+  }
 
   selectType(value: TransactionType): void {
     this.form.controls.type.setValue(value);
@@ -158,26 +181,47 @@ export class Modal {
     }
 
     const amount = Number(values.amount);
-    const transaction: Transaction = {
-      id: `tx-${Date.now()}-${crypto.randomUUID()}`,
-      icon: 'account_balance_wallet',
-      description: values.description.trim(),
-      category: category.label,
-      type: values.type,
-      nature: values.nature,
-      paymentMethod: values.paymentMethod,
-      status: 'Pendente',
-      date: values.date,
-      amount: values.type === 'income' ? amount : -amount,
-    };
+    const existing = this.transactionToEdit();
+    const transaction: Transaction = existing
+      ? {
+          ...existing,
+          description: values.description.trim(),
+          category: category.label,
+          type: values.type,
+          nature: values.nature,
+          paymentMethod: values.paymentMethod,
+          date: values.date,
+          amount: values.type === 'income' ? amount : -amount,
+        }
+      : {
+          id: `tx-${Date.now()}-${crypto.randomUUID()}`,
+          icon: 'account_balance_wallet',
+          description: values.description.trim(),
+          category: category.label,
+          type: values.type,
+          nature: values.nature,
+          paymentMethod: values.paymentMethod,
+          status: 'Pendente',
+          date: values.date,
+          amount: values.type === 'income' ? amount : -amount,
+        };
 
-    this.transactionCreated.emit(transaction);
-    this.snackBar.open('Transação salva com sucesso.', '×', {
-      duration: 3000,
-      horizontalPosition: 'end',
-      verticalPosition: 'top',
-      panelClass: ['success-snackbar'],
-    });
+    if (existing) {
+      this.transactionUpdated.emit(transaction);
+    } else {
+      this.transactionCreated.emit(transaction);
+    }
+
+    this.snackBar.open(
+      existing ? 'Transação atualizada com sucesso.' : 'Transação salva com sucesso.',
+      '×',
+      {
+        duration: 3000,
+        horizontalPosition: 'end',
+        verticalPosition: 'top',
+        panelClass: ['success-snackbar'],
+      },
+    );
     this.close();
   }
 
@@ -202,5 +246,16 @@ export class Modal {
     const now = new Date();
     now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
     return now.toISOString().slice(0, 10);
+  }
+
+  private categoryValueFor(categoryLabel: string): string {
+    let option = this.categoryOptions.find((item) => item.label === categoryLabel);
+
+    if (!option) {
+      option = { value: categoryLabel, label: categoryLabel };
+      this.categoryOptions.push(option);
+    }
+
+    return option.value;
   }
 }

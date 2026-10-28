@@ -67,7 +67,13 @@
             <td
               class="whitespace-nowrap px-6 py-4 text-right font-semibold text-14 flex gap-2 justify-end"
             >
-              <app-button size="sm" variant="only-icon-secondary" icon="edit"></app-button>
+              <app-button
+                size="sm"
+                variant="only-icon-secondary"
+                icon="edit"
+                aria-label="Editar transação"
+                (clicked)="editedRequest.emit(transaction)"
+              ></app-button>
               <app-button size="sm" variant="only-icon-secondary" icon="delete"></app-button>
             </td>
           </tr>
