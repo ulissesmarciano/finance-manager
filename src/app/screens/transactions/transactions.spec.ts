@@ -29,16 +29,44 @@ describe('Transactions', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should open the add transaction modal when clicking the add button', () => {
+    const addButton = fixture.nativeElement.querySelector(
+      'button[aria-label="Adicionar transação"]',
+    ) as HTMLButtonElement;
+
+    addButton.click();
+    fixture.detectChanges();
+
+    expect(component.transactionModalState.isOpen()).toBe(true);
+    expect(component.editingTransaction).toBeNull();
+    expect(fixture.nativeElement.querySelector('[role="dialog"]')).toBeTruthy();
+  });
+
+  it('should open the edit transaction modal when clicking an edit button', () => {
+    const editButton = fixture.nativeElement.querySelector(
+      'app-button[aria-label="Editar transação"] button',
+    ) as HTMLButtonElement | null;
+
+    expect(editButton).not.toBeNull();
+
+    editButton!.click();
+    fixture.detectChanges();
+
+    expect(component.transactionModalState.isOpen()).toBe(true);
+    expect(component.editingTransaction).toBeTruthy();
+    expect(fixture.nativeElement.querySelector('[role="dialog"]')).toBeTruthy();
+  });
+
   it('should render and close the add transaction modal on the transactions page', () => {
     const modalState = TestBed.inject(TransactionModalState);
     modalState.open();
     fixture.detectChanges();
 
-    expect(fixture.nativeElement.querySelector('[role="dialog"]')).toBeTruthy();
-
     const closeButton = fixture.nativeElement.querySelector(
       'app-modal button',
     ) as HTMLButtonElement;
+    expect(closeButton).toBeTruthy();
+
     closeButton.click();
     fixture.detectChanges();
 
@@ -101,5 +129,46 @@ describe('Transactions', () => {
     });
 
     expect(component.filteredTransactions[0].id).toBe('tx-new');
+  });
+
+  it('should update a transaction and reapply the active filters', () => {
+    component.onFiltersChange({
+      type: 'income',
+      nature: 'all',
+      paymentMethod: 'all',
+    });
+
+    const existing = component.filteredTransactions.find(
+      (transaction) => transaction.id === 'tx-2026-08-21-design',
+    );
+
+    expect(existing).toBeDefined();
+
+    if (!existing) {
+      throw new Error('Expected the transaction to exist in the filtered list');
+    }
+
+    component.onTransactionUpdated({
+      ...existing,
+      description: 'Freelance atualizado',
+      type: 'expense',
+    });
+
+    expect(
+      component.filteredTransactions.some((transaction) => transaction.id === existing.id),
+    ).toBe(false);
+
+    component.onFiltersChange({
+      type: 'all',
+      nature: 'all',
+      paymentMethod: 'all',
+    });
+
+    expect(
+      component.filteredTransactions.find((transaction) => transaction.id === existing.id),
+    ).toMatchObject({
+      description: 'Freelance atualizado',
+      type: 'expense',
+    });
   });
 });

@@ -242,4 +242,40 @@ describe('Modal', () => {
       }),
     );
   });
+
+  it('should keep an unknown category when editing a transaction', () => {
+    const transaction = {
+      id: 'tx-freelance',
+      icon: 'account_balance_wallet',
+      description: 'Trabalho freelance',
+      category: 'Freelance',
+      type: 'income' as const,
+      nature: 'Variável' as const,
+      paymentMethod: 'pix' as const,
+      status: 'Pago' as const,
+      date: '2026-10-20',
+      amount: 500,
+    };
+
+    fixture.componentRef.setInput('transactionToEdit', transaction);
+    fixture.detectChanges();
+
+    const updatedSpy = vi.spyOn(component.transactionUpdated, 'emit');
+
+    expect(component.form.controls.category.value).toBe('Freelance');
+    expect(
+      component.categoryOptions.some(
+        (option) => option.value === 'Freelance' && option.label === 'Freelance',
+      ),
+    ).toBe(true);
+
+    component.onSubmit();
+
+    expect(updatedSpy).toHaveBeenCalledWith(
+      expect.objectContaining({
+        id: 'tx-freelance',
+        category: 'Freelance',
+      }),
+    );
+  });
 });
