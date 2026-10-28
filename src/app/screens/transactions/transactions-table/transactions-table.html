@@ -1,0 +1,90 @@
+<div
+  class="flex flex-col gap-4 bg-primary-foreground rounded-lg shadow-md border border-border hover:shadow-lg hover:translate-y-up-1 transition-transform duration-200"
+>
+  <div class="w-full min-w-0 overflow-x-auto">
+    <table class="w-full min-w-175 border-collapse text-left">
+      <thead>
+        <tr class="border-b border-border text-12 font-semibold text-muted-foreground">
+          <th class="px-6 py-3">DATA</th>
+          <th class="px-6 py-3">DESCRIÇÃO</th>
+          <th class="px-6 py-3">CATEGORIA</th>
+          <th class="px-6 py-3">NATUREZA</th>
+          <th class="px-6 py-3">FORMA</th>
+          <th class="px-6 py-3">SITUAÇÃO</th>
+          <th class="px-6 py-3 text-right">VALOR</th>
+          <th class="px-6 py-3 text-right">AÇÕES</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (transaction of transactions(); track transaction.id) {
+          <tr class="border-b border-border last:border-0">
+            <td class="whitespace-nowrap px-6 py-4 text-muted-foreground text-14">
+              {{ transaction.date | date: 'dd/MM/yyyy' : 'UTC' }}
+            </td>
+
+            <td class="px-6 py-4">
+              <p class="text-14 font-medium text-foreground">
+                {{ transaction.description }}
+              </p>
+            </td>
+
+            <td class="px-6 py-4">
+              <span class="text-muted-foreground px-3-sm py-1 text-14">
+                {{ transaction.category }}
+              </span>
+            </td>
+
+            <td class="px-6 py-4">
+              <span class="rounded-full bg-muted text-muted-foreground px-3-sm py-1 text-12">
+                {{ transaction.nature }}
+              </span>
+            </td>
+
+            <td class="px-6 py-4 text-muted-foreground text-14">
+              {{ getPaymentMethodLabel(transaction.paymentMethod) }}
+            </td>
+
+            <td class="px-6 py-4">
+              <span
+                class="rounded-full px-3-sm py-1 text-12 font-semibold"
+                [class.bg-success-soft]="transaction.status === 'Pago'"
+                [class.text-success]="transaction.status === 'Pago'"
+                [class.bg-accent-soft]="transaction.status === 'Pendente'"
+                [class.text-accent]="transaction.status === 'Pendente'"
+              >
+                {{ transaction.status }}
+              </span>
+            </td>
+
+            <td
+              class="whitespace-nowrap px-6 py-4 text-right font-semibold text-14"
+              [class.text-success]="transaction.amount > 0"
+            >
+              {{ transaction.amount > 0 ? '+' : ''
+              }}{{ transaction.amount | currency: 'BRL' : 'symbol' : '1.2-2' : 'pt-BR' }}
+            </td>
+            <td
+              class="whitespace-nowrap px-6 py-4 text-right font-semibold text-14 flex gap-2 justify-end"
+            >
+              <app-button
+                size="sm"
+                variant="only-icon-secondary"
+                icon="edit"
+                aria-label="Editar transação"
+                (clicked)="editedRequest.emit(transaction)"
+              ></app-button>
+              <app-button
+                size="sm"
+                variant="only-icon-secondary"
+                icon="delete"
+                aria-label="Excluir transação"
+                (clicked)="deleteRequested.emit(transaction)"
+              ></app-button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

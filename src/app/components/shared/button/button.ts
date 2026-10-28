@@ -3,7 +3,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 type ButtonVariant =
-  'primary' | 'secondary' | 'third' | 'outlined-secondary' | 'only-icon-secondary';
+  'primary' | 'secondary' | 'third' | 'success' | 'outlined-secondary' | 'only-icon-secondary';
 type Label = string | null;
 type ButtonSize = 'sm' | 'md' | 'lg';
 type ButtonType = 'button' | 'submit' | 'reset';
@@ -29,10 +29,10 @@ export class Button {
     const variants: Record<ButtonVariant, string> = {
       primary:
         'bg-button-primary text-primary-foreground py-3-sm font-semibold px-4 hover:translate-y-up-1',
-      secondary:
-        'bg-button-secondary text-muted-foreground py-3-sm font-semibold px-4 hover:bg-button-secondary-hover',
-      third:
-        'bg-button-third text-muted-foreground py-3-sm font-semibold px-4 hover:text-foreground',
+      secondary: 'bg-button-secondary py-3-sm font-semibold px-4 hover:bg-button-secondary-hover',
+      third: 'text-muted-foreground py-3-sm font-semibold px-4 hover:text-foreground',
+      success:
+        'bg-button-success text-primary-foreground py-3-sm font-semibold px-4 hover:translate-y-up-1',
       'outlined-secondary':
         'bg-button-secondary text-muted-foreground py-3-sm font-semibold px-4 hover:bg-primary-soft hover:text-foreground border-none',
       'only-icon-secondary':

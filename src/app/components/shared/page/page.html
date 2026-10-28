@@ -1,5 +1,7 @@
 <div class="min-h-screen flex bg-background">
-  <aside class="bg-sidebar hidden lg:flex flex-col py-6 px-4 w-64">
+  <aside
+    class="bg-sidebar border border-border hidden lg:fixed lg:inset-y-0 lg:left-0 lg:flex flex-col py-6 px-4 w-64 h-screen"
+  >
     <app-logo class="mb-8"></app-logo>
     <nav class="flex-1">
       <app-menu></app-menu>
@@ -15,7 +17,7 @@
       <app-link icon="logout" label="Sair" linkType="outlined-secondary" route="/"></app-link>
     </div>
   </aside>
-  <main class="min-w-0 flex-1">
+  <main class="min-w-0 flex-1 lg:ml-64">
     <app-header></app-header>
     <nav class="w-full overflow-x-auto lg:hidden">
       <app-menu class="block w-max"></app-menu>

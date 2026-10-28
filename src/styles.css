@@ -3,6 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap');
 @import 'material-icons/iconfont/material-icons.css';
 @import 'tailwindcss';
+@import '@angular/cdk/overlay-prebuilt.css';
 
 /* css-languageservice-disable-next-line unknownAtRules */
 @theme {
@@ -73,6 +74,7 @@
   --color-button-secondary: oklch(100% 0 0);
   --color-button-secondary-hover: oklch(98.4% 0.005 247.9);
   --color-button-third: oklch(98.4% 0.005 247.9);
+  --color-button-success: oklch(68% 0.15 158);
 
   /* Spacing */
   --spacing-1: 4px;
@@ -173,6 +175,21 @@
   }
 }
 
+.category-select-panel {
+  background-color: var(--color-card);
+  --mat-select-panel-background-color: var(--color-card);
+}
+
+.category-select {
+  --mat-select-trigger-text-size: var(--text-14);
+  --mat-select-trigger-text-line-height: 20px;
+}
+
+.category-select-panel .mat-mdc-option {
+  --mat-option-selected-state-layer-color: var(--color-primary-soft);
+  --mat-option-selected-state-label-text-color: var(--color-foreground);
+}
+
 .mat-datepicker-content:has(.date-range-picker-panel) {
   background-color: var(--color-primary-foreground, #fff);
 }
@@ -193,4 +210,30 @@
 .date-range-field .mat-datepicker-toggle-default-icon {
   width: 16px;
   height: 16px;
+}
+
+.success-snackbar {
+  --mat-snack-bar-container-color: var(--color-success);
+  --mat-snack-bar-supporting-text-color: var(--color-primary-foreground);
+  --mat-snack-bar-button-color: var(--color-primary-foreground);
+  --mat-snack-bar-container-shape: var(--radius-sm);
+}
+
+.error-snackbar {
+  --mat-snack-bar-container-color: var(--color-destructive);
+  --mat-snack-bar-supporting-text-color: var(--color-primary-foreground);
+  --mat-snack-bar-button-color: var(--color-primary-foreground);
+  --mat-snack-bar-container-shape: var(--radius-sm);
+}
+
+.success-snackbar.mat-mdc-snack-bar-container
+  .mat-mdc-button.mat-mdc-snack-bar-action:not(:disabled),
+.error-snackbar.mat-mdc-snack-bar-container
+  .mat-mdc-button.mat-mdc-snack-bar-action:not(:disabled) {
+  --mat-button-text-state-layer-color: transparent;
+}
+
+.success-snackbar .mdc-snackbar__label,
+.error-snackbar .mdc-snackbar__label {
+  padding: 8px 12px;
 }

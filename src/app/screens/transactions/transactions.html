@@ -1,1 +1,27 @@
-<p>transactions works!</p>
+<div class="py-6 px-5">
+  <section class="grid gap-5 min-w-0">
+    <app-transaction-filters (filtersChange)="onFiltersChange($event)"></app-transaction-filters>
+
+    <app-transactions-table
+      class="block w-full min-w-0"
+      [transactions]="filteredTransactions()"
+      (editedRequest)="onEditRequested($event)"
+      (deleteRequested)="onDeleteRequested($event)"
+    ></app-transactions-table>
+  </section>
+  <button
+    class="fixed bottom-6 right-6 z-30 grid size-14 place-items-center rounded-full bg-accent text-accent-foreground shadow-(--shadow-lift) transition-transform hover:scale-105 lg:hidden"
+    aria-label="Adicionar transação"
+    (click)="onAddRequested()"
+  >
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+
+<app-modal
+  [isOpen]="transactionModalState.isOpen()"
+  [transactionToEdit]="editingTransaction"
+  (closed)="onModalClosed()"
+  (transactionCreated)="onTransactionCreated($event)"
+  (transactionUpdated)="onTransactionUpdated($event)"
+></app-modal>
