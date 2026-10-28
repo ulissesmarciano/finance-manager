@@ -80,7 +80,7 @@ describe('Transactions', () => {
       paymentMethod: 'all',
     });
     expect(
-      component.filteredTransactions.every((transaction) => transaction.type === 'income'),
+      component.filteredTransactions().every((transaction) => transaction.type === 'income'),
     ).toBe(true);
     component.onFiltersChange({
       type: 'all',
@@ -88,7 +88,7 @@ describe('Transactions', () => {
       paymentMethod: 'all',
     });
     expect(
-      component.filteredTransactions.every((transaction) => transaction.nature === 'Fixa'),
+      component.filteredTransactions().every((transaction) => transaction.nature === 'Fixa'),
     ).toBe(true);
     component.onFiltersChange({
       type: 'all',
@@ -96,14 +96,14 @@ describe('Transactions', () => {
       paymentMethod: 'pix',
     });
     expect(
-      component.filteredTransactions.every((transaction) => transaction.paymentMethod === 'pix'),
+      component.filteredTransactions().every((transaction) => transaction.paymentMethod === 'pix'),
     ).toBe(true);
     component.onFiltersChange({
       type: 'income',
       nature: 'Variável',
       paymentMethod: 'pix',
     });
-    expect(component.filteredTransactions.map((transaction) => transaction.id)).toEqual([
+    expect(component.filteredTransactions().map((transaction) => transaction.id)).toEqual([
       'tx-2026-08-21-design',
     ]);
     component.onFiltersChange({
@@ -111,7 +111,7 @@ describe('Transactions', () => {
       nature: 'Fixa',
       paymentMethod: 'pix',
     });
-    expect(component.filteredTransactions).toEqual([]);
+    expect(component.filteredTransactions()).toEqual([]);
   });
 
   it('should add a newly created transaction to the table', () => {
@@ -128,7 +128,7 @@ describe('Transactions', () => {
       amount: -25,
     });
 
-    expect(component.filteredTransactions[0].id).toBe('tx-new');
+    expect(component.filteredTransactions()[0].id).toBe('tx-new');
   });
 
   it('should update a transaction and reapply the active filters', () => {
@@ -138,9 +138,9 @@ describe('Transactions', () => {
       paymentMethod: 'all',
     });
 
-    const existing = component.filteredTransactions.find(
-      (transaction) => transaction.id === 'tx-2026-08-21-design',
-    );
+    const existing = component
+      .filteredTransactions()
+      .find((transaction) => transaction.id === 'tx-2026-08-21-design');
 
     expect(existing).toBeDefined();
 
@@ -155,7 +155,7 @@ describe('Transactions', () => {
     });
 
     expect(
-      component.filteredTransactions.some((transaction) => transaction.id === existing.id),
+      component.filteredTransactions().some((transaction) => transaction.id === existing.id),
     ).toBe(false);
 
     component.onFiltersChange({
@@ -165,10 +165,66 @@ describe('Transactions', () => {
     });
 
     expect(
-      component.filteredTransactions.find((transaction) => transaction.id === existing.id),
+      component.filteredTransactions().find((transaction) => transaction.id === existing.id),
     ).toMatchObject({
       description: 'Freelance atualizado',
       type: 'expense',
     });
+  });
+
+  it('should restore a deleted transaction when the snackbar action is clicked', async () => {
+    const originalTransactions = [...component.filteredTransactions()];
+    const transactionToDelete = originalTransactions[0];
+
+    component.onDeleteRequested(transactionToDelete);
+    fixture.detectChanges();
+
+    expect(component.filteredTransactions()).not.toContain(transactionToDelete);
+
+    const undoButton = document.body.querySelector(
+      '.mat-mdc-snack-bar-action',
+    ) as HTMLButtonElement | null;
+    expect(undoButton).not.toBeNull();
+
+    undoButton!.click();
+    await fixture.whenStable();
+    expect(component.filteredTransactions()).toEqual(originalTransactions);
+    expect(fixture.nativeElement.querySelector('tbody').textContent).toContain(
+      transactionToDelete.description,
+    );
+  });
+
+  it('should ignore a delete request for a transaction that is not in the list', () => {
+    const originalTransactions = [...component.filteredTransactions()];
+    const unknownTransaction = {
+      ...originalTransactions[0],
+      id: 'tx-unknown',
+    };
+
+    component.onDeleteRequested(unknownTransaction);
+
+    expect(component.filteredTransactions()).toEqual(originalTransactions);
+  });
+
+  it('should not restore a transaction if another with the same id already exists', async () => {
+    const transactionToDelete = component.filteredTransactions()[0];
+
+    component.onDeleteRequested(transactionToDelete);
+    component.onTransactionCreated({
+      ...transactionToDelete,
+      description: 'Transação recriada',
+    });
+
+    const undoButton = document.body.querySelector(
+      '.mat-mdc-snack-bar-action',
+    ) as HTMLButtonElement | null;
+    expect(undoButton).not.toBeNull();
+
+    undoButton!.click();
+    await fixture.whenStable();
+
+    expect(
+      component.filteredTransactions().filter((item) => item.id === transactionToDelete.id),
+    ).toEqual([{ ...transactionToDelete, description: 'Transação recriada' }]);
   });
 });

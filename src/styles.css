@@ -226,6 +226,13 @@
   --mat-snack-bar-container-shape: var(--radius-sm);
 }
 
+.success-snackbar.mat-mdc-snack-bar-container
+  .mat-mdc-button.mat-mdc-snack-bar-action:not(:disabled),
+.error-snackbar.mat-mdc-snack-bar-container
+  .mat-mdc-button.mat-mdc-snack-bar-action:not(:disabled) {
+  --mat-button-text-state-layer-color: transparent;
+}
+
 .success-snackbar .mdc-snackbar__label,
 .error-snackbar .mdc-snackbar__label {
   padding: 8px 12px;
