@@ -1,1 +1,19 @@
-<p>cards-accounts works!</p>
+<section class="py-6 px-5">
+  <div class="inline-flex rounded-lg bg-secondary p-1 gap-1 items center">
+    @for (option of typeOptions; track option.value) {
+      <app-button
+        [variant]="selectedType === option.value ? 'secondary' : 'third'"
+        [size]="'md'"
+        class=""
+        (click)="selectType(option.value)"
+        [label]="option.label"
+        [icon]="option.icon"
+      ></app-button>
+    }
+  </div>
+  @if (selectedType === 'credit-card') {
+    <div>credit card!</div>
+  } @else {
+    <div>account balance!</div>
+  }
+</section>
