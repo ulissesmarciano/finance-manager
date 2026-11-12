@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { Button } from '../../components/shared/button/button';
 import { Card, CreditCardComponent } from './credit-card-component/credit-card-component';
+import { BankAccountList } from './bank-account-list/bank-account-list';
+import { CardComponent } from '../../components/shared/card-component/card-component';
+import { ChartConfiguration } from 'chart.js';
 
 export interface CardAccountsState {
   type: 'credit-card' | 'account-balance';
@@ -8,7 +11,7 @@ export interface CardAccountsState {
 }
 
 @Component({
-  imports: [Button, CreditCardComponent],
+  imports: [Button, CreditCardComponent, BankAccountList, CardComponent],
   selector: 'app-cards-accounts',
   templateUrl: './cards-accounts.html',
 })
@@ -43,6 +46,15 @@ export class CardsAccounts {
     expirationDate: '15 nov',
     cardLimit: 7000,
     cardBalance: 6500,
+  };
+
+  readonly categoryChartOptions: ChartConfiguration<'doughnut'>['options'] = {
+    responsive: true,
+    maintainAspectRatio: false,
+    cutout: '70%',
+    plugins: {
+      legend: { display: false },
+    },
   };
 
   selectedType: CardAccountsState['type'] = 'credit-card';
