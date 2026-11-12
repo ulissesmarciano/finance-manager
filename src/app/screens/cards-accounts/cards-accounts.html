@@ -1,4 +1,4 @@
-<section class="py-6 px-5">
+<section class="py-6 px-5 flex flex-col gap-5">
   <div class="inline-flex rounded-lg bg-secondary p-1 gap-1 items center">
     @for (option of typeOptions; track option.value) {
       <app-button
@@ -11,9 +11,15 @@
       ></app-button>
     }
   </div>
-  @if (selectedType === 'credit-card') {
-    <div>credit card!</div>
-  } @else {
-    <div>account balance!</div>
-  }
+  <div>
+    @if (selectedType === 'credit-card') {
+      <div class="grid gap-5 lg:grid-cols-3">
+        <app-credit-card-component [card]="creditCard1"></app-credit-card-component>
+        <app-credit-card-component [card]="creditCard2"></app-credit-card-component>
+        <app-credit-card-component [card]="creditCard3"></app-credit-card-component>
+      </div>
+    } @else {
+      <div>account balance!</div>
+    }
+  </div>
 </section>
