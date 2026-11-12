@@ -24,4 +24,37 @@
       </div>
     }
   </div>
+  <div>
+    <app-card-component
+      class="xl:col-span-2"
+      type="donut-chart"
+      chartTitle="Distribuição do saldo"
+      chartSubtitle="Entre todas as contas"
+      donutChartType="custom"
+      [donutChartOptions]="categoryChartOptions"
+      [donutChartItems]="[
+        { name: 'Conta Corrente Principal', value: 'R$ 4.200,00' },
+        { name: 'Reserva de Emergência', value: 'R$ 2.100,00' },
+        { name: 'Caixinha de Viagem', value: 'R$ 1.500,00' },
+        { name: 'Caixa de Investimentos', value: 'R$ 3.000,00' },
+      ]"
+      [donutChartData]="{
+        labels: [
+          'Conta Corrente Principal',
+          'Reserva de Emergência',
+          'Caixinha de Viagem',
+          'Caixa de Investimentos',
+        ],
+        datasets: [
+          {
+            data: [42, 30, 18, 10],
+            backgroundColor: ['#03A9F4', '#F59E0B', '#24B47E', '#9B5DE5'],
+            borderColor: '#FFFFFF',
+            borderWidth: 1,
+            spacing: 4,
+          },
+        ],
+      }"
+    ></app-card-component>
+  </div>
 </section>
