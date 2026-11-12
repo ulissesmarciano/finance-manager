@@ -19,7 +19,9 @@
         <app-credit-card-component [card]="creditCard3"></app-credit-card-component>
       </div>
     } @else {
-      <div>account balance!</div>
+      <div class="flex flex-col border border-border rounded-lg">
+        <app-bank-account-list></app-bank-account-list>
+      </div>
     }
   </div>
 </section>
