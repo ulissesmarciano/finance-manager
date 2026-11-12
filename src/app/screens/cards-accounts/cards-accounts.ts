@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Button } from '../../components/shared/button/button';
 import { Card, CreditCardComponent } from './credit-card-component/credit-card-component';
+import { BankAccountList } from './bank-account-list/bank-account-list';
 
 export interface CardAccountsState {
   type: 'credit-card' | 'account-balance';
@@ -8,7 +9,7 @@ export interface CardAccountsState {
 }
 
 @Component({
-  imports: [Button, CreditCardComponent],
+  imports: [Button, CreditCardComponent, BankAccountList],
   selector: 'app-cards-accounts',
   templateUrl: './cards-accounts.html',
 })

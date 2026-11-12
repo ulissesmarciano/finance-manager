@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
 export type IconName =
-  'north_east' | 'south_east' | 'compare_arrows' | 'savings' | 'warning' | 'target';
+  'north_east' | 'south_east' | 'compare_arrows' | 'savings' | 'warning' | 'target' | string;
 
 @Component({
   imports: [MatIconModule],
@@ -11,6 +11,7 @@ export type IconName =
 })
 export class CustomIcon {
   @Input() name: IconName = 'north_east';
+  @Input() useVariantClasses = true;
 
   variantClasses(): string {
     const variants: Record<IconName, string> = {

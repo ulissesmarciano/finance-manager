@@ -1,0 +1,37 @@
+<div class="px-6 py-5">
+  <app-titles-component
+    title="Visão geral das contas"
+    [subtitle]="'Saldo total de ' + formatCurrency(totalBalance)"
+    size="md"
+  ></app-titles-component>
+</div>
+<ul class="flex w-full min-w-0 flex-col gap-4">
+  @for (account of accounts; track account.id) {
+    <li
+      class="flex min-w-0 items-center justify-between gap-4 border-t border-border px-4 py-2 md:px-6 md:py-4"
+    >
+      <div class="flex min-w-0 flex-1 items-center gap-4">
+        <span
+          class="flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary-soft text-primary"
+        >
+          <app-custom-icon
+            [name]="getAccountIcon(account.accountType)"
+            [useVariantClasses]="false"
+          ></app-custom-icon>
+        </span>
+        <app-titles-component
+          class="min-w-0 flex-1"
+          [title]="account.name"
+          [subtitle]="account.institution + ' · ' + account.accountType"
+          size="md"
+        ></app-titles-component>
+      </div>
+      <app-titles-component
+        class="shrink-0 whitespace-nowrap text-right"
+        [title]="formatCurrency(account.balance)"
+        [subtitle]="getShare(account.balance) + ' do total'"
+        size="md"
+      ></app-titles-component>
+    </li>
+  }
+</ul>
