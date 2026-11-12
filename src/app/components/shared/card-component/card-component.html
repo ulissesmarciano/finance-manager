@@ -87,7 +87,10 @@
         </div>
       } @else if (barType() === 'single-bar') {
         <div class="flex flex-col gap-2">
-          <app-progress-bar-component [barType]="barType()"></app-progress-bar-component>
+          <app-progress-bar-component
+            [barType]="barType()"
+            [percentage]="progressBarPercentage()"
+          ></app-progress-bar-component>
         </div>
       }
     </div>

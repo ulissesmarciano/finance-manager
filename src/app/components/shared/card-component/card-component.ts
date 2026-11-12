@@ -57,6 +57,7 @@ export class CardComponent {
   budgetChipName = input<string>('');
   chipPercentage = input<number | null>(null);
   donutChartType = input<'default' | 'custom'>('default');
+  progressBarPercentage = input<number>(0);
 
   selectedPeriod = signal<Period>('this-month');
 
