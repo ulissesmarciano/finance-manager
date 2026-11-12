@@ -27,28 +27,28 @@ describe('CardComponent', () => {
   });
 
   it('should return the color at the requested donut index', () => {
-    component.donutChartData = {
+    fixture.componentRef.setInput('donutChartData', {
       labels: ['Receitas'],
       datasets: [{ data: [100], backgroundColor: ['#00ff00'] }],
-    };
+    });
 
     expect(component.getDonutColor(0)).toBe('#00ff00');
   });
 
   it('should return undefined when the donut index does not exist', () => {
-    component.donutChartData = {
-      labels: ['Receitas'],
+    fixture.componentRef.setInput('donutChartData', {
+      labels: [{ name: 'Receitas' }],
       datasets: [{ data: [100], backgroundColor: ['#00ff00'] }],
-    };
+    });
 
     expect(component.getDonutColor(1)).toBeUndefined();
   });
 
   it('should return the shared donut color when backgroundColor is a string', () => {
-    component.donutChartData = {
+    fixture.componentRef.setInput('donutChartData', {
       labels: ['Receitas'],
       datasets: [{ data: [100], backgroundColor: '#00ff00' }],
-    };
+    });
 
     expect(component.getDonutColor(0)).toBe('#00ff00');
   });

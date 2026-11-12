@@ -1,4 +1,4 @@
-import { Component, input, Input, signal } from '@angular/core';
+import { Component, input, signal } from '@angular/core';
 import { Metric } from './metric/metric';
 import { DateRangePicker } from '../date-range-picker/date-range-picker';
 import { Button } from '../button/button';
@@ -14,6 +14,11 @@ type CardType = 'summary' | 'period' | 'metrics' | 'budget' | 'chart' | 'donut-c
 type Period = 'this-month' | '7-days' | '30-days' | 'this-year';
 type BarType = 'single-bar' | 'versus-bar';
 type MetricChipType = 'metricChipComponent' | 'infoChipComponent' | 'percentageChipComponent';
+
+interface DonutChartItem {
+  name: string;
+  value: string;
+}
 
 @Component({
   imports: [
@@ -31,14 +36,27 @@ type MetricChipType = 'metricChipComponent' | 'infoChipComponent' | 'percentageC
   templateUrl: './card-component.html',
 })
 export class CardComponent {
-  @Input() type: CardType = 'metrics';
-  @Input() topIcon: IconName | null = null;
-  @Input() barType: BarType | null = null;
-  @Input() leftIcon: IconName | null = null;
+  type = input<CardType>('metrics');
+  topIcon = input<IconName | null>(null);
+  barType = input<BarType | null>(null);
+  leftIcon = input<IconName | null>(null);
   metricChipType = input<MetricChipType>('metricChipComponent');
   metricChipIcon = input<'north_east' | 'south_east' | null>(null);
   versusPercentage = input<number>(0);
   metricChipValue = input<string>('');
+  metricLabel = input<string>('');
+  value = input<string>('');
+  foot = input<string>('');
+  chartTitle = input<string>('');
+  chartSubtitle = input<string>('');
+  chartData = input<ChartData<'bar'>>({ labels: [], datasets: [] });
+  chartOptions = input<ChartConfiguration<'bar'>['options']>({});
+  donutChartData = input<ChartData<'doughnut'>>({ labels: [], datasets: [] });
+  donutChartOptions = input<ChartConfiguration<'doughnut'>['options']>({});
+  donutChartItems = input<DonutChartItem[]>([]);
+  budgetChipName = input<string>('');
+  chipPercentage = input<number | null>(null);
+  donutChartType = input<'default' | 'custom'>('default');
 
   selectedPeriod = signal<Period>('this-month');
 
@@ -46,20 +64,8 @@ export class CardComponent {
     this.selectedPeriod.set(period);
   }
 
-  @Input() metricLabel = '';
-  @Input() value = '';
-  @Input() foot = '';
-  @Input() chartTitle = '';
-  @Input() chartSubtitle = '';
-  @Input() chartData: ChartData<'bar'> = { labels: [], datasets: [] };
-  @Input() chartOptions: ChartConfiguration<'bar'>['options'] = {};
-  @Input() donutChartData: ChartData<'doughnut'> = { labels: [], datasets: [] };
-  @Input() donutChartOptions: ChartConfiguration<'doughnut'>['options'] = {};
-  @Input() budgetChipName = '';
-  @Input() chipPercentage: number | null = null;
-
   getDonutColor(index: number): string | undefined {
-    const colors = this.donutChartData.datasets[0]?.backgroundColor;
+    const colors = this.donutChartData().datasets[0]?.backgroundColor;
 
     if (Array.isArray(colors)) {
       const color = colors[index];
