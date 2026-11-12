@@ -1,4 +1,4 @@
-<div [class]="'flex justify-center items-center' + variantClasses()">
+<div [class]="'flex justify-center items-center ' + (useVariantClasses ? variantClasses() : '')">
   <mat-icon
     fontSet="material-symbols-outlined"
     class="size-5! text-center justify-center text-20!"
