@@ -12,6 +12,7 @@ import {
   getValueRangePercentage,
   ProgressBarComponent,
   type ValueRange,
+  type ValueRangeDisplay,
 } from './progress-bar-component/progress-bar-component';
 
 type CardType = 'summary' | 'period' | 'metrics' | 'budget' | 'chart' | 'donut-chart';
@@ -48,6 +49,7 @@ export class CardComponent {
   metricChipIcon = input<'north_east' | 'south_east' | null>(null);
   versusPercentage = input<number>(0);
   metricChipValue = input<string>('');
+  metricTitle = input<string>('');
   metricLabel = input<string>('');
   title = input<string>('');
   value = input<string>('');
@@ -61,9 +63,11 @@ export class CardComponent {
   donutChartItems = input<DonutChartItem[]>([]);
   budgetChipName = input<string>('');
   valueRange = input<ValueRange | null>(null);
+  valueRangeDisplay = input<ValueRangeDisplay>('amounts');
   chipPercentage = input<number | null>(null);
   donutChartType = input<'default' | 'custom'>('default');
   progressBarPercentage = input<number>(0);
+  singleBarType = input<'growing' | 'descending'>('growing');
 
   selectedPeriod = signal<Period>('this-month');
 
