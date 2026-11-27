@@ -9,16 +9,27 @@
   </div>
 } @else if (barType === 'single-bar') {
   <div class="mt-3 flex h-2 overflow-hidden rounded-full bg-secondary">
-    <span [class]="variantSingleBarClasses()" [style.width.%]="progressPercentage()"></span>
+    <span
+      [class]="variantSingleBarClasses()"
+      [style.width.%]="progressPercentage()"
+      [class.growing]="singleBarType() === 'growing'"
+      [class.descending]="singleBarType() === 'descending'"
+    ></span>
   </div>
   @if (valueRange(); as range) {
-    <div class="flex justify-between text-12 mt-2 text-muted-foreground">
-      <div>
-        <p>{{ formatCurrency(range.current) }} de {{ formatCurrency(range.total) }}</p>
+    @if (valueRangeDisplay() === 'completion') {
+      <p class="mt-2 text-12 text-muted-foreground font-semibold">
+        {{ completionPercentage() }}% concluído
+      </p>
+    } @else {
+      <div class="flex justify-between text-12 mt-2 text-muted-foreground">
+        <div>
+          <p>{{ formatCurrency(range.current) }} de {{ formatCurrency(range.total) }}</p>
+        </div>
+        <div>
+          <p>{{ formatCurrency(remainingAmount(range)) }} restantes</p>
+        </div>
       </div>
-      <div>
-        <p>{{ formatCurrency(remainingAmount(range)) }} restantes</p>
-      </div>
-    </div>
+    }
   }
 }

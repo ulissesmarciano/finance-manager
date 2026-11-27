@@ -7,6 +7,8 @@ export interface ValueRange {
   total: number;
 }
 
+export type ValueRangeDisplay = 'amounts' | 'completion';
+
 export function getValueRangePercentage(range: ValueRange): number {
   if (range.total <= 0) {
     return 0;
@@ -24,18 +26,27 @@ export class ProgressBarComponent {
   @Input() barType: BarType | null = null;
   @Input() percentage = 0;
   valueRange = input<ValueRange | null>(null);
+  valueRangeDisplay = input<ValueRangeDisplay>('amounts');
+  singleBarType = input<'growing' | 'descending'>('growing');
 
   variantSingleBarClasses(): string {
-    if (this.progressPercentage() < 80) {
-      return 'bg-primary rounded-sm';
+    const isBelowThreshold = this.progressPercentage() < 80;
+
+    if (this.singleBarType() === 'descending') {
+      return isBelowThreshold ? 'bg-primary rounded-sm' : 'bg-accent rounded-sm';
     }
-    return 'bg-accent rounded-sm';
+
+    return isBelowThreshold ? 'bg-accent rounded-sm' : 'bg-primary rounded-sm';
   }
 
   progressPercentage(): number {
     const range = this.valueRange();
 
     return range === null ? this.percentage : getValueRangePercentage(range);
+  }
+
+  completionPercentage(): number {
+    return Math.round(this.progressPercentage());
   }
 
   remainingAmount(range: ValueRange): number {
