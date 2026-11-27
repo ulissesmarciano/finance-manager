@@ -24,6 +24,7 @@ export class CustomIcon {
       savings: 'flex size-10 items-center justify-center rounded-lg bg-accent-soft text-accent',
       warning: 'flex size-10 items-center justify-center rounded-lg bg-accent-soft text-accent',
       target: 'flex size-10 items-center justify-center rounded-lg bg-primary-soft text-primary!',
+      person: 'flex size-10 items-center justify-center rounded-lg bg-primary-soft text-primary!',
     };
 
     return variants[this.name];
