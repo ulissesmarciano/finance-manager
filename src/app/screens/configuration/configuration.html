@@ -1,1 +1,15 @@
-<p>configuration works!</p>
+<div class="grid gap-5 px-5 py-6 lg:px-8 lg:py-8">
+  <section class="grid gap-5 p-6 bg-primary-foreground rounded-lg shadow-md border border-border">
+    <div class="flex gap-3">
+      <app-custom-icon name="person"></app-custom-icon>
+      <app-titles-component
+        title="Perfil"
+        size="md"
+        subtitle="Seus dados pessoais"
+      ></app-titles-component>
+    </div>
+    <app-perfil-item [label]="'Nome completo'" [value]="'Ulisses Gonçalves'"></app-perfil-item>
+    <app-perfil-item [label]="'E-mail'" [value]="'ulisses.goncalves@example.com'"></app-perfil-item>
+    <app-perfil-item [label]="'Plano'" [value]="'Premium'"></app-perfil-item>
+  </section>
+</div>

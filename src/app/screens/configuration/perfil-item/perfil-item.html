@@ -1,0 +1,10 @@
+<div
+  class="flex items-center justify-between gap-4 rounded-xl border border-border px-4 py-3 text-sm"
+>
+  <span class="text-muted-foreground">{{ label() }}</span>
+  <span
+    [attr.title]="value()"
+    class="min-w-0 max-w-[10ch] truncate font-medium sm:max-w-none md:overflow-visible md:text-clip md:whitespace-normal"
+    >{{ value() }}</span
+  >
+</div>
