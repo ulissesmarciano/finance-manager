@@ -7,10 +7,8 @@
     ></app-card-component>
     <app-card-component
       type="metrics"
-      metricLabel="Gasto a'te agora"
+      metricLabel="Gasto até agora"
       value="R$ 6.694,00"
-      barType="single-bar"
-      [progressBarPercentage]="78.75"
     ></app-card-component>
     <app-card-component
       type="metrics"
@@ -18,5 +16,42 @@
       metricLabel="Categorias perto do limite"
       value="3"
     ></app-card-component>
+  </section>
+  <section class="p-6 bg-primary-foreground rounded-lg shadow-md border border-border">
+    <app-titles-component
+      title="Orçamento mensal por categoria"
+      size="md"
+      subtitle="As barras ficam âmbar aos 80% de uso e vermelhas quando o limite é ultrapassado"
+    ></app-titles-component>
+    <div class="grid gap-5 md:grid-cols-3 mt-6">
+      <app-card-component
+        type="budget"
+        title="Moradia"
+        barType="single-bar"
+        [valueRange]="{ current: 6694, total: 8500 }"
+      >
+      </app-card-component>
+      <app-card-component
+        type="budget"
+        title="Transporte"
+        barType="single-bar"
+        [valueRange]="{ current: 1250, total: 1500 }"
+      >
+      </app-card-component>
+      <app-card-component
+        type="budget"
+        title="Saúde"
+        barType="single-bar"
+        [valueRange]="{ current: 900, total: 1000 }"
+      >
+      </app-card-component>
+      <app-card-component
+        type="budget"
+        title="Compras"
+        barType="single-bar"
+        [valueRange]="{ current: 300, total: 500 }"
+      >
+      </app-card-component>
+    </div>
   </section>
 </div>
