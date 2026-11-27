@@ -19,4 +19,15 @@ describe('Metric', () => {
   it('should render', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should apply a class string to the metrics title', () => {
+    fixture.componentRef.setInput('variant', 'metrics');
+    fixture.componentRef.setInput('title', 'Monthly budget');
+    fixture.detectChanges();
+
+    const title = fixture.nativeElement.querySelector('p') as HTMLParagraphElement;
+
+    expect(title.textContent).toBe('Monthly budget');
+    expect(title.classList.contains('text-foreground')).toBe(true);
+  });
 });
