@@ -30,9 +30,9 @@ describe('ChipComponent', () => {
     expect(chipComponent.classList.contains('bg-accent-soft')).toBe(true);
   });
 
-  it('should apply the success variant when the indicator is below 90', () => {
+  it('should apply the success variant when the indicator is below 80', () => {
     fixture.componentRef.setInput('chipType', 'percentageChipComponent');
-    fixture.componentRef.setInput('chipIndicator', 89);
+    fixture.componentRef.setInput('chipIndicator', 79);
     fixture.detectChanges();
 
     const chipComponent = fixture.nativeElement.querySelector('span') as HTMLSpanElement;
