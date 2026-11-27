@@ -32,10 +32,10 @@ export class ChipComponent {
   }
 
   variantPercentageClasses(indicator: number | null): string {
-    if (indicator !== null && indicator >= 90) {
+    if (indicator !== null && indicator >= 80) {
       return 'inline-flex self-end gap-1 py-1 px-2 rounded-lg bg-accent-soft text-accent font-semibold text-12';
     }
-    if (indicator !== null && indicator < 90) {
+    if (indicator !== null && indicator < 80) {
       return 'inline-flex self-end gap-1 py-1 px-2 rounded-lg bg-success-soft text-success font-semibold text-12';
     }
 

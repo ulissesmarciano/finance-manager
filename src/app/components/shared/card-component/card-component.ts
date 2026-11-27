@@ -8,7 +8,11 @@ import { ChartConfiguration, ChartData } from 'chart.js';
 import { DoughnutChart } from './doughnut-chart/doughnut-chart';
 import { MatIcon } from '@angular/material/icon';
 import { ChipComponent } from './chip-component/chip-component';
-import { ProgressBarComponent } from './progress-bar-component/progress-bar-component';
+import {
+  getValueRangePercentage,
+  ProgressBarComponent,
+  type ValueRange,
+} from './progress-bar-component/progress-bar-component';
 
 type CardType = 'summary' | 'period' | 'metrics' | 'budget' | 'chart' | 'donut-chart';
 type Period = 'this-month' | '7-days' | '30-days' | 'this-year';
@@ -45,6 +49,7 @@ export class CardComponent {
   versusPercentage = input<number>(0);
   metricChipValue = input<string>('');
   metricLabel = input<string>('');
+  title = input<string>('');
   value = input<string>('');
   foot = input<string>('');
   chartTitle = input<string>('');
@@ -55,6 +60,7 @@ export class CardComponent {
   donutChartOptions = input<ChartConfiguration<'doughnut'>['options']>({});
   donutChartItems = input<DonutChartItem[]>([]);
   budgetChipName = input<string>('');
+  valueRange = input<ValueRange | null>(null);
   chipPercentage = input<number | null>(null);
   donutChartType = input<'default' | 'custom'>('default');
   progressBarPercentage = input<number>(0);
@@ -63,6 +69,18 @@ export class CardComponent {
 
   selectPeriod(period: Period) {
     this.selectedPeriod.set(period);
+  }
+
+  budgetPercentage(): number | null {
+    const range = this.valueRange();
+
+    return range === null ? this.chipPercentage() : getValueRangePercentage(range);
+  }
+
+  budgetChipIndicator(): number | null {
+    const percentage = this.budgetPercentage();
+
+    return percentage === null ? null : Math.round(percentage);
   }
 
   getDonutColor(index: number): string | undefined {
